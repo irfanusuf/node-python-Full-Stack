@@ -16,6 +16,65 @@ body{
     height: 95vh;
     margin-bottom: 50px;
     border-radius: 5%;
+
+
+    >form{
+
+
+       width: 500px;
+       margin: auto;
+        display: flex;
+        flex-direction: column;
+     
+    
+        
+        >h1{
+            text-align: center;
+        }
+
+        >label{
+
+            font-weight: 700;
+          
+            margin-left: 30px;
+            margin-bottom: 10px;
+            
+
+            >input{
+                width: 300px;
+                padding: 5px 20px;
+                border: 1px solid green ;
+                border-radius: 8px;
+            }
+        }
+
+
+
+
+        >button{
+
+            width: 200px;
+            background-color: green;
+            color: antiquewhite;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin-left: 100px;
+            margin-top: 100px;
+            font-size: 20px;
+            padding: 5px 20px;
+
+            &:hover{
+                background-color: beige;
+                color: green;
+                cursor: pointer;
+            }
+
+
+        }
+
+
+      
+    }
     
 }
 
@@ -24,6 +83,7 @@ body{
 .heading{
     color: blueviolet;
     text-align: center;
+  
 }
 
 
