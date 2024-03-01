@@ -110,3 +110,17 @@ body {
     }
   }
 }
+
+
+.about-container{
+
+
+background-color: azure;
+width: 800px;
+height: 800px;
+margin-top: 20px;
+border: 1px solid black;
+border-radius: 5px;
+padding: 40px;
+
+}
