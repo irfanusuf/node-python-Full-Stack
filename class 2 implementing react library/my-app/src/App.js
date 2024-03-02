@@ -1,25 +1,29 @@
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import About from './components/About'
+import Contact from './components/Contact'
+import Notfound from "./components/Notfound";
+import Home from "./components/Home";
+import { BrowserRouter,  Routes ,Route } from "react-router-dom";
 
-
-const App =() => {
+const App = () => {
   return (
+    <div>
+      <BrowserRouter>
+        <Navbar />
+    
+        <Routes>
+          <Route path="/"   element={<Home/>} />
+          <Route path="/about"   element={<About/>} />
+          <Route path="/contact" element={<Contact/>} />
+          <Route path="*" element={<Notfound/>} />
+        </Routes>
 
-<div> 
+       
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
+};
 
-  <Navbar/>
-  <h1> My first react app with suhaib</h1>
-  <Footer/>
-
-
-</div>
-
-
-  )
-
-
-
-}
-
-
-export default App
+export default App;

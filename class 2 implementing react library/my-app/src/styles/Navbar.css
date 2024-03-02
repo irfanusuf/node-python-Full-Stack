@@ -1,19 +1,29 @@
 .navbar {
+  display: flex;
+  background-color: black;
+  color: aliceblue;
+
+  > ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+
+    > li {
 
 
- display: flex;
-    background-color: black;
-    color: aliceblue;
+      > a {
+        text-decoration: none;
+        margin-left: 30px;
+        transition: all 0.5s;
+        color: antiquewhite;
 
-    >ul{
-
-        display: flex;
-        list-style-type:none ;
-
-
-        >li{
-
-            margin-left: 30px;
+        &:hover {
+          color: blue;
+          scale: 1.2;
+          cursor: pointer;
         }
+      }
     }
+  }
 }
