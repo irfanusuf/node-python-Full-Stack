@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import SideNavbar from "./components/SideNavbar";
 import PageNotFound from "./components/PageNotFound";
+import ItemCard from  "./components/ItemCard"
 
 const App = () => {
   return (
@@ -11,7 +12,9 @@ const App = () => {
       <div style={{display:"flex"}}>
         <SideNavbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/items" element={<Home />} />
+          <Route path="/items/:id" element={<ItemCard/>} />
+
           <Route path="/about" element={<About />} />
           <Route path="*" element={<PageNotFound />} />
 

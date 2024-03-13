@@ -1,47 +1,39 @@
 .home {
+  display: block;
+  width: 100%;
+  margin-left: 400px;
+  background-color: rgba(0, 0, 0, 0.281);
 
-    display: block;
-    width: 100%;
-    background-image: url(../assets/pexels-daniel-absi-952670.jpg);
-    background-size: cover;
+  > .cards {
+    margin-top: 30px;
+    margin-left: 120px;
+    display: flex;
+    flex-wrap: wrap;
 
+    > .card {
+      color: aliceblue;
+      width: 300px;
 
+      margin-left: 30px;
+      margin-bottom: 10px;
 
-    >.cards {
-
-        margin-top : 30px;
-        margin-left: 30px;
-        display: flex;
-        flex-wrap: wrap;
-
-
-
-
-        >.card{
-            color: aliceblue;
-            width: 300px;
-            height: 400px;
-            border: 1px solid white;
-            border-radius: 8px;
-            margin-left: 30px;
-            margin-bottom: 10px;
-
-            >img{
-            width: 300px;
-            border-radius: 8px;
-            }
-
-            >.description{
-                display: flex;
-                flex-direction: column;
-                background-color: aliceblue;
-                height: 100px;
-                color: black;
-            }
-
+      a {
+        > img {
+          width: 300px;
+          border-radius: 8px;
         }
+      }
 
+      > .description {
+        padding-left: 20px;
+        padding-top: 10px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        background-color: aliceblue;
+        height: 100px;
+        color: black;
+      }
     }
-
-    
+  }
 }
