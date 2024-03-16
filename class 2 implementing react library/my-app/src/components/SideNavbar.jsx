@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "./SideNavbar.scss";
 import { Link } from "react-router-dom";
+import Login from "./Login";
 
 const SideNavbar = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   const handleLogin = () => {
-    setShowLogin(!showLogin);
+    setShowLogin(true); 
   };
 
   return (
@@ -35,16 +36,8 @@ const SideNavbar = () => {
         </ul>
       </div>
 
+      <Login  showLogin = {showLogin} setShowLogin = {setShowLogin}/>   
 
-
-
-      <form className={showLogin ? "form" : "form-none"}>
-        <label>Email</label>
-        <input 
-        placeholder="enter you email here "/>
-
-        <button onClick={()=>{setShowLogin(false)}}>Submit</button>
-      </form>
     </>
   );
 };

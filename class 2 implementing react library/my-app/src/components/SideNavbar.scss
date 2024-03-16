@@ -26,6 +26,7 @@
 
     > li {
       font-size: 20px;
+      cursor: pointer;
 
       > a {
         text-decoration: none;
@@ -36,37 +37,5 @@
         }
       }
     }
-  }
-}
-
-.form-none {
-  display: none;
-}
-
-.form {
-  position: absolute;
-  top: 300px;
-  left: 700px;
-  width: 300px;
-  height: 200px;
-  background-color: rgb(184, 188, 192);
-  border-radius: 10px;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-
-   >button{
-    margin-top:100px;
-    
-   }
-
-
-  >input{
-
-    padding: 5px 10px;
-    border-radius: 8px;
-    border: 1px solid green;
-    margin-top: 10px;
   }
 }

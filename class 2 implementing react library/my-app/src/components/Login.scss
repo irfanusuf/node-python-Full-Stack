@@ -1,0 +1,48 @@
+.form-none {
+  display: none;
+}
+
+.form {
+  position: absolute;
+  top: 150px;
+  left: 600px;
+  width: 300px;
+  height: 300px;
+  background-color: rgb(183, 211, 238);
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+
+  >h2{
+    margin: 0;
+    text-align: center;
+  }
+
+
+  >.close-button{
+    position: absolute;
+    right: 20px;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+    font-size: xx-large;
+  }
+   >b{
+  font-weight: 600;
+  font-size: small;
+  margin: 10px 0;
+
+   }
+
+  >label{
+    margin-top: 10px;
+  }
+  > input {
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid green;
+    margin-top: 10px;
+  }
+}

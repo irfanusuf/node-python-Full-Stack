@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import img1 from "../assets/rice.jpg";
 import img2 from "../assets/rice 1.jpg";
 import img3 from "../assets/rice 2.jpg";
-import img4 from "../assets/rice.jpg";
+
 
 
 
