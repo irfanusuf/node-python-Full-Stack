@@ -2,15 +2,38 @@ import React, { useState } from "react";
 import "./Login.scss";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const [showLogin, setShowLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const navigate = useNavigate()
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    toast.error("Server Down!");
+    try {
+      let myEmail = "irfanusuf33@gmail.com";
+      let mypassword = "12345";
+
+      if (myEmail === email && mypassword === password) {
+        toast.success("logged in sucessfully ");
+         
+        await localStorage.setItem("myemail" , myEmail)
+        
+
+        navigate ('/')
+
+
+
+      } else {
+        toast.error("Wrong Credentials");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const gotoSignUp = () => {
@@ -39,10 +62,25 @@ const Login = (props) => {
           <h2> Login</h2>
 
           <label>Email</label>
-          <input placeholder="enter you email here " required />
+          <input
+            placeholder="Enter you email here "
+            value={email}
+            name="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
 
           <label>Password</label>
-          <input placeholder="enter you password here " required />
+          <input
+            type="password"
+            placeholder="enter you password here "
+            value={password}
+            name="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
 
           <b>
             No account <Link onClick={gotoSignUp}> SignUp here</Link>{" "}

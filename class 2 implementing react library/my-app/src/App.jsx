@@ -7,16 +7,21 @@ import PageNotFound from "./components/PageNotFound";
 import ItemCard from  "./components/ItemCard"
 
 const App = () => {
+
+
+  const email = localStorage.getItem("myemail")
+  
+
   return (
     <BrowserRouter>
       <div style={{display:"flex"}}>
         <SideNavbar />
         <Routes>
-          <Route path="/items" element={<Home />} />
-          <Route path="/items/:id" element={<ItemCard/>} />
-
-          <Route path="/about" element={<About />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/" element={email !== null  ? <Home /> : <PageNotFound />} />
+          <Route path="/items/:id" element={<ItemCard/>} />
+          <Route path="/about" element={<About />} />
+          
 
         </Routes>
       </div>

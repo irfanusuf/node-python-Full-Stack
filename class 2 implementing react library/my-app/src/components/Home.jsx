@@ -20,7 +20,11 @@ import { Link } from "react-router-dom";
 
 // details.map((param) => (<div> {param.anything}</div>))
 
+
+
 //multi associated array
+
+
 const details = [
   {
     id : "1",
@@ -84,6 +88,11 @@ const details = [
 ];
 
 const Home = () => {
+
+
+
+  
+
   
 
   return (
