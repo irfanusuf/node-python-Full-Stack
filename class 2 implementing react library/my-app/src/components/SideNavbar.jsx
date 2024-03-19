@@ -2,13 +2,22 @@ import React, { useState } from "react";
 import "./SideNavbar.scss";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import Contact from "./Contact";
 
 const SideNavbar = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [displaylogin, setdisplayLogin] = useState(false);
+  const [displayContact , setDisplayContact] = useState (false)
 
   const handleLogin = () => {
-    setShowLogin(true); 
+    setdisplayLogin(true); 
   };
+
+const handleContactPage = ()=>{
+  setDisplayContact(true)
+}
+
+
+
 
   return (
     <>
@@ -25,9 +34,11 @@ const SideNavbar = () => {
             <Link to="/about"> About</Link>
           </li>
           <hr />
-          <li>
-            <Link to="/contact"> Contact</Link>
-          </li>
+
+
+          <li onClick={handleContactPage}>  Contact Us  </li>
+
+
           <hr />
           <li>
             <Link to="/blogs"> Blogs</Link>
@@ -36,7 +47,9 @@ const SideNavbar = () => {
         </ul>
       </div>
 
-      <Login  showLogin = {showLogin} setShowLogin = {setShowLogin}/>   
+      <Login  displaylogin = {displaylogin} setdisplayLogin = {setdisplayLogin}/>   
+
+      <Contact displayContact = {displayContact} setDisplayContact = {setDisplayContact} />
 
     </>
   );

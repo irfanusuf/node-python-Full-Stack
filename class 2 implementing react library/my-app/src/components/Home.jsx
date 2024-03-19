@@ -89,12 +89,6 @@ const details = [
 
 const Home = () => {
 
-
-
-  
-
-  
-
   return (
     <div className="home">
       <div className="cards">

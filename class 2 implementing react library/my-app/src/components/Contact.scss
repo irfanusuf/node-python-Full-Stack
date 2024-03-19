@@ -1,0 +1,63 @@
+.contact{
+    position: absolute;
+    top: 120px;
+    left: 500px;
+    width: 600px;
+    height: 400px;
+    border: 1px solid green ;
+    background-color: rgb(169, 184, 179);
+    color: black;
+    padding: 20px;
+
+
+
+    >.close-button{
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 28px;
+
+
+    }
+
+    >.contact-form {
+        display: flex;
+        flex-direction: column;
+
+            >label {
+                font-weight: 700;
+            }
+
+            >input  {
+                  border: 1px solid green ;
+                  border-radius: 8px;
+                  padding: 5px 10px;
+            }
+
+            >textarea {
+                border: 1px solid green ;
+                border-radius: 8px;
+                padding: 5px 10px;
+                height: 200px;
+          }
+
+            >button{
+
+                margin-top: 10px;
+
+            }
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+

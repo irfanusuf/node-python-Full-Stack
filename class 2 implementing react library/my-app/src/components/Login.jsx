@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
+
   const [showLogin, setShowLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +17,7 @@ const Login = (props) => {
 
     try {
       let myEmail = "irfanusuf33@gmail.com";
-      let mypassword = "12345";
+      let mypassword = "12345";   // this data is usually stored in database 
 
       if (myEmail === email && mypassword === password) {
         toast.success("logged in sucessfully ");
@@ -47,15 +48,15 @@ const Login = (props) => {
       {showLogin ? (
         <form
           className={
-            props.showLogin
+            props.displaylogin
               ? "form  animate__animated animate__bounceInLeft"
-              : "form-none"
+              : "form   animate__animated animate__bounceOutRight "
           }
         >
           <IoMdClose
             className="close-button"
             onClick={() => {
-              props.setShowLogin(false);
+              props.setdisplayLogin(false);
             }}
           />
 
@@ -93,7 +94,7 @@ const Login = (props) => {
       ) : (
         <form
           className={
-            props.showLogin
+            props.displaylogin
               ? "form  animate__animated  animate__bounceInLeft "
               : "form-none"
           }
@@ -101,7 +102,7 @@ const Login = (props) => {
           <IoMdClose
             className="close-button"
             onClick={() => {
-              props.setShowLogin(false);
+              props.setdisplayLogin(false);
             }}
           />
 
