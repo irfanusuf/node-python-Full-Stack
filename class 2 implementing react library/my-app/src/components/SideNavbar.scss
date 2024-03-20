@@ -2,7 +2,7 @@
   background-color: black;
   color: aliceblue;
   width: 400px;
-  height: 200vh;
+  height: 100vh;
   position: fixed;
 
   > .brand-name {
@@ -38,4 +38,16 @@
       }
     }
   }
+}
+
+
+.footer {
+  width: 100%;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
 }

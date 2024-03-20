@@ -6,18 +6,15 @@ import Contact from "./Contact";
 
 const SideNavbar = () => {
   const [displaylogin, setdisplayLogin] = useState(false);
-  const [displayContact , setDisplayContact] = useState (false)
+  const [displayContact, setDisplayContact] = useState(false);
 
   const handleLogin = () => {
-    setdisplayLogin(true); 
+    setdisplayLogin(true);
   };
 
-const handleContactPage = ()=>{
-  setDisplayContact(true)
-}
-
-
-
+  const handleContactPage = () => {
+    setDisplayContact(true);
+  };
 
   return (
     <>
@@ -28,6 +25,12 @@ const handleContactPage = ()=>{
         </div>
 
         <ul>
+          <li>
+            {" "}
+            <Link to="/"> Home </Link>{" "}
+          </li>
+
+          <hr />
           <li onClick={handleLogin}> Login</li>
           <hr />
           <li>
@@ -35,9 +38,7 @@ const handleContactPage = ()=>{
           </li>
           <hr />
 
-
-          <li onClick={handleContactPage}>  Contact Us  </li>
-
+          <li onClick={handleContactPage}> Contact Us </li>
 
           <hr />
           <li>
@@ -45,12 +46,22 @@ const handleContactPage = ()=>{
           </li>
           <hr />
         </ul>
+
+        <div className="footer">
+        <span>All Rights Reserved copyright 2024</span>
+        <span> Cognitive Learning </span>
       </div>
 
-      <Login  displaylogin = {displaylogin} setdisplayLogin = {setdisplayLogin}/>   
+      </div>
 
-      <Contact displayContact = {displayContact} setDisplayContact = {setDisplayContact} />
+     
 
+      <Login displaylogin={displaylogin} setdisplayLogin={setdisplayLogin} />
+
+      <Contact
+        displayContact={displayContact}
+        setDisplayContact={setDisplayContact}
+      />
     </>
   );
 };

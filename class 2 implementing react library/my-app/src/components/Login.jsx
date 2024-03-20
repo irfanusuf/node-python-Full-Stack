@@ -19,13 +19,17 @@ const Login = (props) => {
       let myEmail = "irfanusuf33@gmail.com";
       let mypassword = "12345";   // this data is usually stored in database 
 
+
+
       if (myEmail === email && mypassword === password) {
+
         toast.success("logged in sucessfully ");
          
         await localStorage.setItem("myemail" , myEmail)
         
+        navigate ('/items')
 
-        navigate ('/')
+        props.setdisplayLogin(false)
 
 
 
@@ -36,6 +40,9 @@ const Login = (props) => {
       console.log(error);
     }
   };
+
+
+
 
   const gotoSignUp = () => {
     setShowLogin(!showLogin);

@@ -5,7 +5,8 @@ import About from "./components/About";
 import SideNavbar from "./components/SideNavbar";
 import PageNotFound from "./components/PageNotFound";
 import ItemCard from  "./components/ItemCard"
-import Login from "./components/Login";
+import Blogs from "./components/Blogs";
+import Landingpage from "./components/Landingpage";
 
 const App = () => {
 
@@ -20,9 +21,13 @@ const App = () => {
         <Routes>
           
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={email !== null  ? <Home /> : <Login/>} />
+          <Route path="/" element= {<Landingpage/>}  />
+          <Route path="/items" element= {<Home/>}  />
+
           <Route path="/items/:id" element={<ItemCard/>} />
           <Route path="/about" element={<About />} />
+          <Route path="/blogs" element={<Blogs/>} />
+
           
 
         </Routes>
