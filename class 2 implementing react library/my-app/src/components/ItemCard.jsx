@@ -5,9 +5,6 @@ import img1 from "../assets/rice.jpg";
 import img2 from "../assets/rice 1.jpg";
 import img3 from "../assets/rice 2.jpg";
 
-
-
-
 const details = [
   {
     id: "1",
@@ -71,8 +68,8 @@ const details = [
 ];
 
 const ItemCard = () => {
-  const id = useParams()
-  const object = details.find(item => item.id === id)
+  const id = useParams();
+  const object = details.find((item) => item.id === id);
 
   // function myFunction(value, index, array) {
   //   return index === id;
@@ -82,7 +79,13 @@ const ItemCard = () => {
     <div className="item-card">
       <div className="card">
         {/* <img src="" /> */}
-        <button onClick={()=>{console.log(object)}}>click</button>
+        <button
+          onClick={() => {
+            console.log(object);
+          }}
+        >
+          click
+        </button>
       </div>
     </div>
   );

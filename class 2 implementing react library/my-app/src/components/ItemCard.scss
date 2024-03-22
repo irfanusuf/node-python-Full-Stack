@@ -1,18 +1,14 @@
-.item-card{
+.item-card {
+  background-color: rgb(180, 153, 119);
+  height: 100vh;
+  width: 100%;
 
-
-background-color: rgb(180, 153, 119);
-height: 100vh;
-width: 100%;
-
->.card{
-
+  > .card {
     width: 600px;
     height: 600px;
     background-color: aqua;
     margin-left: 600px;
-    border: 2px solid green ;
-    margin-top: 20px ;
-}
-
+    border: 2px solid green;
+    margin-top: 20px;
+  }
 }
