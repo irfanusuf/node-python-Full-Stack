@@ -28,8 +28,35 @@ const registerController = async (req, res) => {
 };
 
 
-const loginController = (req, res) => {
-  res.send("login here ");
+const loginController = async (req, res) => {
+
+try{
+const {email , password} = req.body
+const existingUser = await User.findOne({email}) 
+if(existingUser) {
+   const passVerify = await bcrypt.compare(password , existingUser.password)
+   if(passVerify){
+    res.json({message : "logged in successfully!"})
+   }
+   else{
+    res.json({message : "incorrect password"})
+   }
+
+}
+else{
+  res.json({message : "user not Found"})
+}
+
+
+
+
+}
+catch(err){
+
+console.log(err)
+}
+
+
 };
 
 module.exports = {
