@@ -4,7 +4,8 @@ const bodyParser = require("body-parser")
 const {
     registerController ,
     loginController,  
-    deleteUserContoller} =require("./controllers/userController")
+    deleteUserContoller,
+    updatePassword} =require("./controllers/userController")
 
 const { connectDb } = require("./config/connDB")
 const port = 4002
@@ -17,6 +18,7 @@ connectDb()
 server.post("/user/register" , registerController ) 
 server.post("/user/login" , loginController )
 server.delete("/user/delete" , deleteUserContoller)
+server.put("/user/updatepass" , updatePassword)
 
 
 

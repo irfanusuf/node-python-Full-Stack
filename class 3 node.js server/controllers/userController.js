@@ -1,6 +1,6 @@
 const { User } = require("../models/userModel");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 const registerController = async (req, res) => {
   try {
@@ -38,13 +38,12 @@ const loginController = async (req, res) => {
           existingUser.password
         );
 
-       const  _id = existingUser._id
+        const _id = existingUser._id;
 
         if (passVerify) {
-          const token = await jwt.sign({_id} , "thisismysecretkey" )
+          const token = await jwt.sign({ _id }, "thisismysecretkey");
 
-
-          res.json({ message: "logged in successfully!" , token});
+          res.json({ message: "logged in successfully!", token });
         } else {
           res.json({ message: "incorrect password" });
         }
@@ -59,16 +58,35 @@ const loginController = async (req, res) => {
   }
 };
 
-const deleteUserContoller =async (req, res) =>{
+const deleteUserContoller = async (req, res) => {
+  try {
+    const { userId } = req.query;
+    if (userId !== undefined && userId !== "") {
+      const existingUserDel = await User.findByIdAndDelete(userId);
 
+      if (existingUserDel) {
+        res.json({ message: "User deleted Sucessfully!" });
+      } else {
+        res.json({ message: "Some Error | User not Found" });
+      }
+    
+    }
+    else{
+      res.json({ message: "No Query passed" });
+    }
+  } catch (err) {
+    res.json({ message: "Server Error" });
+    console.log(err);
+  }
+};
 
-res.json({message : "homeWork"})
+const updatePassword = async(req,res) =>{
 
 }
-
 
 module.exports = {
   registerController,
   loginController,
-  deleteUserContoller
+  deleteUserContoller,
+  updatePassword
 };
