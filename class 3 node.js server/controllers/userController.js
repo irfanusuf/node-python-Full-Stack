@@ -69,9 +69,7 @@ const deleteUserContoller = async (req, res) => {
       } else {
         res.json({ message: "Some Error | User not Found" });
       }
-    
-    }
-    else{
+    } else {
       res.json({ message: "No Query passed" });
     }
   } catch (err) {
@@ -80,13 +78,41 @@ const deleteUserContoller = async (req, res) => {
   }
 };
 
-const updatePassword = async(req,res) =>{
+const updatePassword = async (req, res) => {
+  try {
+    const { userId } = req.query;
+    let { oldPass, newPass } = req.body; // declare
 
-}
+    if (userId !== undefined && userId !== "") {
+      let existingUser = await User.findById(userId);
+
+      if (newPass !== "" && oldPass !== "") {
+        newPass = await bcrypt.hash(newPass, 10);
+
+        const checkPass = await bcrypt.compare(oldPass, existingUser.password);
+
+        if (checkPass) {
+          existingUser = await User.findByIdAndUpdate(userId, {
+            password: newPass,
+          });
+          res.json({ message: "Password updated Sucessfully" });
+        } else {
+          res.json({ message: "incorrect old password" });
+        }
+      } else {
+        res.json({ message: "kindly provide all details" });
+      }
+    } else {
+      res.json({ message: "Query not Given or empty" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports = {
   registerController,
   loginController,
   deleteUserContoller,
-  updatePassword
+  updatePassword,
 };
