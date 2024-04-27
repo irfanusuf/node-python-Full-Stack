@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookStore | Register</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
     
 
-    <div class="register"> 
+
+  <div class="register"> 
 
         
 
-    <form method="post" action="/register" >
+    <form method="post" action="/login" >
 
 
-        <h1> Register With Us </h1>
+        <h1> Login  </h1>
 
 
         <label> Email</label>
@@ -25,15 +26,21 @@
         name="email"
         />
 
-        <label> Username</label>
-        <input placeholder="enter your username"
-        type="text"
-        name="username"/>
 
         <label> Password</label>
         <input placeholder="enter your Password"
         type="password"
         name="password"/>
+
+        {{#if message}}
+
+        <p style="color: rgb(186, 32, 32);"> {{message}} </p>
+        {{/if}}
+
+         {{#if successMessage}}
+
+        <p style="color: rgb(82, 207, 14);">  {{successMessage}} </p>
+        {{/if}}
 
 
 
@@ -46,7 +53,6 @@
 
 
     </div>
-
 
 
 

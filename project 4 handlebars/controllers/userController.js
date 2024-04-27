@@ -17,12 +17,13 @@ const registerhandler = async (req, res) => {
       });
       await newUser.save();
 
-      res.send("User registered Succesfully!");
+      // res.render("register" , {successMessage : "User saved Succesfully!"});
+      res.redirect("/login")
     } else {
-      res.send("User already Exists!");
+      res.render("register" , {message : "User already Exists!"});
     }
   } else {
-    res.send("All credentials required!");
+    res.render("register" , {message : "All Credentials Required !"});
   }
 };
 
