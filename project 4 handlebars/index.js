@@ -1,7 +1,7 @@
 const express = require("express"); //import
 const path = require("path");
 const  connectDB = require('./config/dbConnect');
-const { registerhandler, loginhandler } = require("./controllers/userController");
+const { registerhandler, loginhandler, deleteHandler } = require("./controllers/userController");
 const bodyParser = require("body-parser");
 
 
@@ -32,6 +32,8 @@ app.get("/secureindex", (req, res) => {res.render('secureHome')});
 
 app.post("/register", registerhandler)
 app.post("/login", loginhandler)
+app.delete('/user/del' , deleteHandler)
+
 
 
 

@@ -5,7 +5,7 @@ const registerhandler = async (req, res) => {
   const { email, username, password } = req.body;
 
   if (email !== "" && username !== "" && password !== "") {
-    console.log(email);
+ 
     const isUser = await User.findOne({ email });
 
     if (!isUser) {
@@ -18,17 +18,40 @@ const registerhandler = async (req, res) => {
       await newUser.save();
 
       // res.render("register" , {successMessage : "User saved Succesfully!"});
-      res.redirect("/login")
+      res.redirect("/login");
     } else {
-      res.render("register" , {message : "User already Exists!"});
+      res.render("register", { message: "User already Exists!" });
     }
   } else {
-    res.render("register" , {message : "All Credentials Required !"});
+    res.render("register", { message: "All Credentials Required !" });
   }
 };
 
-const loginhandler = (req, res) => {
-  console.log("function exported ");
+const deleteHandler = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (user) {
+      const verifyAccount = await bcrypt.compare(password, user.password);
+      if (verifyAccount) {
+        await User.findByIdAndDelete(user._id);
+        res.json({ message: "Deleted Succesfully!" });
+      } else {
+        res.json({ message: "Password Incorrect" });
+      }
+    } else {
+      res.json({ message: "User doesnot Exists" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-module.exports = { registerhandler, loginhandler };
+
+const loginhandler = (req, res) => {
+  res.json({message: " wait developer are working on this handler "})
+};
+
+module.exports = { registerhandler, loginhandler, deleteHandler };
