@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
@@ -5,7 +6,6 @@ const registerhandler = async (req, res) => {
   const { email, username, password } = req.body;
 
   if (email !== "" && username !== "" && password !== "") {
- 
     const isUser = await User.findOne({ email });
 
     if (!isUser) {
@@ -49,9 +49,38 @@ const deleteHandler = async (req, res) => {
   }
 };
 
+const loginhandler = async (req, res) => {
+  const { email, password } = req.body;
 
-const loginhandler = (req, res) => {
-  res.json({message: " wait developer are working on this handler "})
+  if (email !== "" && password !== "") {
+    const isExistingUser = await User.findOne({ email });
+    if (isExistingUser) {
+      const verifyPss = await bcrypt.compare(password, isExistingUser.password);
+      if (verifyPss) {
+        const generateToken = await jwt.sign(
+          { userId: isExistingUser._id },
+          "thgiismysecretkey"
+        );
+
+        res.cookie("token", generateToken, {
+          maxAge: 24 * 60 * 60 * 1000, // milliseconds
+          secure: true,
+          httpOnly: true,
+        });
+        res.redirect("/secureindex");
+      } else {
+        res.render("login", { message: "PassWord incorrect!" });
+      }
+    } else {
+      res.render("login", { message: "User Not Found!" });
+    }
+  } else {
+    res.render("login", { message: "All credentials Required!" });
+  }
 };
+
+
+
+
 
 module.exports = { registerhandler, loginhandler, deleteHandler };

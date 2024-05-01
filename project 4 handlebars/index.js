@@ -1,8 +1,10 @@
 const express = require("express"); //import
 const path = require("path");
+const cookie = require("cookie-parser")
 const  connectDB = require('./config/dbConnect');
 const { registerhandler, loginhandler, deleteHandler } = require("./controllers/userController");
 const bodyParser = require("body-parser");
+const isAuthenticated = require("./authorization/auth");
 
 
 const port = 3000;
@@ -16,6 +18,7 @@ connectDB()
 app.use(bodyParser.urlencoded({extended : false}))  // relevant for post methods
 app.use(express.json())       //parsing  json data 
 app.use(express.static(path.join(__dirname, "public")));   // serving static files 
+app.use(cookie())
 app.set('view engine', 'hbs');
 
 
@@ -25,7 +28,7 @@ app.set('view engine', 'hbs');
 app.get("/", (req, res) => {res.render('index')});
 app.get("/register", (req, res) => {res.render('register')});
 app.get("/login", (req, res) => {res.render('login')});
-app.get("/secureindex", (req, res) => {res.render('secureHome')});
+app.get("/secureindex", isAuthenticated,  (req, res) => {res.render('secureHome')});
 
 
 
