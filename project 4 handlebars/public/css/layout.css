@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+ 
+
+    >ul {
+      display: flex;
+      >li{
+
+        >a{
+            color: white;
+            list-style-type: none;
+            text-decoration: none;
+
+            &:hover{
+                color: blue;
+            }
+        }
+        display: flex;
+        margin-left: 30px;
+        font-size: 12px;
+      }
+    }
+  }
