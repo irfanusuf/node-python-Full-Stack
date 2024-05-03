@@ -1,60 +1,43 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="/css/register.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="/css/register.css" />
+  </head>
+  <body>
 
+    <div class="register">
 
-  <div class="register"> 
+      <form method="post" action="/login">
 
-        
-
-    <form method="post" action="/login" >
-
-
-        <h1> Login  </h1>
-
+        <h1> Login </h1>
 
         <label> Email</label>
-        <input placeholder="enter your email"
-        type="text"
-        name="email"
-        />
-
+        <input placeholder="enter your email" type="text" name="email" />
 
         <label> Password</label>
-        <input placeholder="enter your Password"
-        type="password"
-        name="password"/>
+        <input
+          placeholder="enter your Password"
+          type="password"
+          name="password"
+        />
 
         {{#if message}}
 
-        <p style="color: rgb(186, 32, 32);"> {{message}} </p>
+          <p style="color: rgb(186, 32, 32);"> {{message}} </p>
         {{/if}}
 
-         {{#if successMessage}}
+        {{#if successMessage}}
 
-        <p style="color: rgb(82, 207, 14);">  {{successMessage}} </p>
+          <p style="color: rgb(82, 207, 14);"> {{successMessage}} </p>
         {{/if}}
 
+        <button type="submit"> Login </button>
 
-
-        <button type="submit">   Login  </button>
-
-
-
-    </form>
-
-
+      </form>
 
     </div>
 
-
-
-</body>
+  </body>
 </html>

@@ -39,10 +39,10 @@ app.use(cookie());
 
 // rendering is on server side      SSR
 
-app.get("/", (req, res) => { res.render("index");});
-app.get("/register", (req, res) => {res.render("register");});
-app.get("/login", (req, res) => {res.render("login");});
-app.get("/secureindex", isAuthenticated, (req, res) => {res.render("secureHome");});
+app.get("/", (req, res) => { res.render("index" , {pageTitle : "BookStore"});});
+app.get("/register", (req, res) => {res.render("register" ,  {pageTitle : "BookStore | Register"});});
+app.get("/login", (req, res) => {res.render("login" , {pageTitle : "BookStore | Login"});});
+app.get("/secureindex", isAuthenticated, (req, res) => {res.render("secureHome" ,{pageTitle : "BookStore | Dashboard"});});
 
 
 
