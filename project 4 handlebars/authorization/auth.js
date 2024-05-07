@@ -27,7 +27,7 @@ const isAuthenticated = async (req, res, next) => {
         }
       );
 
-      console.log(verifyToken);
+     
     }
   } catch (err) {
     console.log(err);

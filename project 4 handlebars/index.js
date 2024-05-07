@@ -10,6 +10,8 @@ const {
 } = require("./controllers/userController");
 const bodyParser = require("body-parser");
 const isAuthenticated = require("./authorization/auth");
+const createBook = require("./controllers/itemController");
+const multMid = require("./middlewares/multMid");
 
 const port = 3000;
 const app = express();
@@ -43,14 +45,21 @@ app.get("/", (req, res) => { res.render("index" , {pageTitle : "BookStore"});});
 app.get("/register", (req, res) => {res.render("register" ,  {pageTitle : "BookStore | Register"});});
 app.get("/login", (req, res) => {res.render("login" , {pageTitle : "BookStore | Login"});});
 app.get("/secureindex", isAuthenticated, (req, res) => {res.render("secureHome" ,{pageTitle : "BookStore | Dashboard"});});
+app.get("/add/book", isAuthenticated, (req, res) => {res.render("addBook" ,{pageTitle : "BookStore | Add book "});});
 
 
 
 
-
+// user Routes
 app.post("/register", registerhandler);
 app.post("/login", loginhandler);
 app.delete("/user/del", deleteHandler);
+
+
+
+// item Routes
+app.post("/add/book",multMid, createBook);
+
 
 app.listen(port, () => {
   console.log(`server started on  ${port}`);
