@@ -17,9 +17,9 @@ const createBook = async (req, res) => {
       bookDescription !== "" &&
       bookPrice !== ""
     ) {
-      const {image} = req.body;
+      const image = req.file.path;
 
-      console.log(image)
+    
 
       if (!image) {
         return res.render("addBook", { message: "No image Selected" });

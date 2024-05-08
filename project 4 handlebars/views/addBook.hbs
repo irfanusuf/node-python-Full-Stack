@@ -2,23 +2,29 @@
 
 <div class="AddBook">
 
-    <h1> Add new Book </h1>
-  <form method="post" action="/add/book">
+  <h1> Add new Book </h1>
+  <form method="post" action="/add/book" enctype="multipart/form-data">
 
     <input type="text" placeholder="Add title of the Book" name="bookTitle" />
     <input type="text" placeholder="Add Author of the Book" name="bookAuthor" />
     <input type="text" placeholder="Book Description" name="bookDescription" />
     <input type="number" placeholder="Book Price" name="bookPrice" />
-    <input type="file" placeholder="Add a picture of book" name="image" />
+
+
+
+    <input
+      type="file"
+      placeholder="Add a picture of book"
+      accept="image/*"   
+      name="image"
+    />
 
     {{#if message}}
-  <span> 
-     {{message }}
-  </span>
-    
+      <span>
+        {{message}}
+      </span>
 
     {{/if}}
-
 
     <button type="submit"> Add Book </button>
 
