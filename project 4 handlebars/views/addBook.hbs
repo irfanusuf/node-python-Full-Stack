@@ -10,12 +10,10 @@
     <input type="text" placeholder="Book Description" name="bookDescription" />
     <input type="number" placeholder="Book Price" name="bookPrice" />
 
-
-
     <input
       type="file"
       placeholder="Add a picture of book"
-      accept="image/*"   
+      accept="image/*"
       name="image"
     />
 
@@ -29,4 +27,11 @@
     <button type="submit"> Add Book </button>
 
   </form>
+
+  {{#if src}}
+
+    <img style="width: 300px;" src={{src}} alt="no-image" />
+
+  {{/if}}
+
 </div>

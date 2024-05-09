@@ -9,6 +9,12 @@ body {
 
   display: flex;
   background-color: rgb(43, 36, 36);
+  /* background-image: linear-gradient(
+    to bottom right,
+    rgb(155, 220, 215),
+    rgb(126, 97, 97),
+    rgb(44, 41, 41)
+  ); */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 

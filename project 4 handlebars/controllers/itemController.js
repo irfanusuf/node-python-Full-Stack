@@ -15,11 +15,9 @@ const createBook = async (req, res) => {
       bookTitle !== "" &&
       bookAuthor !== "" &&
       bookDescription !== "" &&
-      bookPrice !== ""
+      bookPrice !== "" 
     ) {
       const image = req.file.path;
-
-    
 
       if (!image) {
         return res.render("addBook", { message: "No image Selected" });
@@ -41,14 +39,19 @@ const createBook = async (req, res) => {
       const save = await book.save();
 
       if (save) {
-        res.render("addBook", { message: "Book saved Succesfully!" });
+        res.render("addBook", {
+          message: "Book saved Succesfully!",
+          src: bookImgUrl,
+        });
       } else {
         res.render("addBook", { message: "Some Error during saving " });
       }
     } else {
       res.render("addBook", { message: "All Details Required" });
     }
-  } catch (err) {console.log(err)}
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = createBook;
