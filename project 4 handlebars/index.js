@@ -19,17 +19,20 @@ const app = express();
 
 
 app.engine("hbs" , xhbs.engine({
-
   extname: "hbs",     // engine
   defaultLayout: "layout",   // layout is the main page 
   layoutsDir: path.join(__dirname, "views", "layouts"),
   partialsDir: path.join(__dirname, "views" , "partials"),
-
-
-
 }))
 
+
+
+
 app.set("view engine", "hbs");
+app.set("views" , path.join(__dirname , "views" , "pages"))
+
+
+
 
 connectDB();
 
@@ -46,6 +49,7 @@ app.get("/register", (req, res) => {res.render("register" ,  {pageTitle : "BookS
 app.get("/login", (req, res) => {res.render("login" , {pageTitle : "BookStore | Login"});});
 app.get("/secureindex", isAuthenticated, (req, res) => {res.render("secureHome" ,{pageTitle : "BookStore | Dashboard"});});
 app.get("/add/book", isAuthenticated, (req, res) => {res.render("addBook" ,{pageTitle : "BookStore | Add book "});});
+app.get("/user/login", (req, res) => {res.render("userLogin" ,{pageTitle : "BookStore | User  | Login "});});
 
 
 
