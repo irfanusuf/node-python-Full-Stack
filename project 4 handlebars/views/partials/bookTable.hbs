@@ -1,0 +1,297 @@
+
+<style>
+
+   td{
+ 
+    justify-content: center;
+    align-items: center;
+
+   }
+
+</style>
+
+
+
+<div class="container mt-5">
+
+  <div class="h1">Currently Available Books </div>
+
+  <button
+    type="button"
+    class="btn btn-success"
+    data-bs-toggle="modal"
+    data-bs-target="#addBookModal"
+  >
+    Add a book
+  </button>
+
+  <div class="modal" id="addBookModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Add a Book</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+
+          <form method="post" action="/book/add" enctype="multipart/form-data">
+            <div class="mb-3 mt-3">
+
+              <label for="bookTitle" class="form-label"> BookTitle:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter BookTitle"
+                name="bookTitle"
+              />
+            </div>
+
+            <div class="mb-3 mt-3">
+
+              <label for="bookAuthor" class="form-label"> Book Author:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Book Author"
+                name="bookAuthor"
+              />
+            </div>
+
+            <div class="mb-3 mt-3">
+
+              <label for="bookDescription" class="form-label">
+                Book Description:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Description of book "
+                name="bookDescription"
+              />
+            </div>
+
+            <div class="mb-3 mt-3">
+
+              <label for="bookTitle" class="form-label"> Price:</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Enter price of the book "
+                name="bookPrice"
+              />
+            </div>
+
+            <div class="mb-3 mt-3">
+
+              <label for="bookTitle" class="form-label"> Select Image:</label>
+              <input
+                type="file"
+                class="form-control"
+                placeholder="Select Image"
+                name="image"
+                accept="image/*"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hover">
+
+    <thead>
+      <tr>
+
+        <th> Book Title</th>
+        <th> Book Description </th>
+        <th> Book Author</th>
+        <th> Book Price</th>
+        <th>Book Image</th>
+        <th> Action </th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      {{#each data}}
+
+        <div class="modal" id="editModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Book Details</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <div class="modal-body">
+
+                <form
+                  method="post"
+                  action="/book/edit/{{this._id}}"
+                  enctype="multipart/form-data"
+                >
+                  <div class="mb-3 mt-3">
+
+                    <label for="bookTitle" class="form-label">
+                      BookTitle:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter BookTitle"
+                      name="bookTitle"
+                      value= {{this.bookTitle}}
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="bookAuthor" class="form-label">
+                      Book Author:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Book Author"
+                      name="bookAuthor"
+                       value= {{this.bookAuthor}}
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="bookDescription" class="form-label">
+                      Book Description:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Description of book "
+                      name="bookDescription"
+                      value={{this.bookDescription}}
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="bookPrice" class="form-label"> Price:</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter price of the book "
+                      name="bookPrice"
+                      value={{this.bookPrice}}
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="bookTitle" class="form-label">
+                      Select Image:</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      placeholder="Select Image"
+                      name="image"
+                      accept="image/*"
+                      value="this.boo"
+                    />
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="delModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">MConfirmation</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                Are u sure u want to delete this entry
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  data-bs-dismiss="modal"
+                >Cancel</button>
+
+                <a class="btn btn-danger" href="/book/delete/{{this._id}}">
+                  Delete</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <tr >
+
+          {{!-- <td> {{this._id}} </td> --}}
+          <td > {{this.bookTitle}} </td>
+          <td> {{this.bookDescription}} </td>
+          <td> {{this.bookAuthor}} </td>
+          <td> {{this.bookPrice}} </td>
+          <td> <img width="50px" src= {{this.bookImgUrl}} alt="no-image">  </td>
+          <td>
+
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#EditModal"
+            >
+              Edit
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#delModal"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      {{/each}}
+
+    </tbody>
+
+  </table>
+
+</div>

@@ -1,5 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 const Book = require("../models/bookModel");
+const errorHandler = require("../utils/feature");
 
 cloudinary.config({
   cloud_name: "dbo0xmbd7",
@@ -15,12 +16,12 @@ const createBook = async (req, res) => {
       bookTitle !== "" &&
       bookAuthor !== "" &&
       bookDescription !== "" &&
-      bookPrice !== "" 
+      bookPrice !== ""
     ) {
       const image = req.file.path;
 
       if (!image) {
-        return res.render("addBook", { message: "No image Selected" });
+        return res.render("secureHome", { message: "No image Selected" });
       }
 
       const fileUpload = await cloudinary.uploader.upload(image, {
@@ -39,19 +40,85 @@ const createBook = async (req, res) => {
       const save = await book.save();
 
       if (save) {
-        res.render("addBook", {
-          message: "Book saved Succesfully!",
-          src: bookImgUrl,
-        });
+        res.redirect("/secureIndex");
       } else {
-        res.render("addBook", { message: "Some Error during saving " });
+        res.render("secureHome", { message: "Some Error during saving " });
       }
     } else {
-      res.render("addBook", { message: "All Details Required" });
+      res.render("secureHome", { message: "All Details Required" });
     }
   } catch (err) {
     console.log(err);
   }
 };
 
-module.exports = createBook;
+const getAllBooks = async (req, res) => {
+  try {
+    // the books data coming from mongoose is not a staright json object .... thats why hbs was not able to acces properties
+
+    // .lean method changes this object into json object and problem is solvd
+    const data = await Book.find().lean();
+
+    res.render("secureHome", {
+      pageTitle: "BookStore | Dashboard",
+      data: data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const editBook = async (req, res) => {
+  try {
+    const _id = req.params.id;
+
+    const { bookTitle, bookAuthor, bookDescription, bookPrice } = req.body;
+
+    const image = req.file.path;
+
+    if (!image) {
+      return res.render("secureHome", { message: "No image Selected" });
+    }
+
+    const fileUpload = await cloudinary.uploader.upload(image, {
+      folder: "Book_Delights",
+    });
+
+    const bookImgUrl = fileUpload.secure_url;
+
+    book = await Book.findByIdAndUpdate(_id, {
+      bookTitle: bookTitle,
+      bookAuthor: bookAuthor,
+      bookDescription: bookDescription,
+      bookPrice: bookPrice,
+      bookImgUrl: bookImgUrl,
+    });
+
+    if (book) {
+      return res.redirect("/secureIndex");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteBook = async (req, res) => {
+  try {
+   const _id = req.params.id;
+
+   const delBook = await Book.findByIdAndDelete(_id) 
+
+   if(delBook) {
+    return res.redirect('/secureIndex');
+   }
+   else{
+    return res.render("secureHome", { message : "Some Error"});
+   }
+
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { createBook, getAllBooks, editBook , deleteBook };

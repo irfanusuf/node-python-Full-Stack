@@ -25,12 +25,22 @@
 
         {{#if message}}
 
-          <p style="color: rgb(186, 32, 32);"> {{message}} </p>
+          <div class="alert alert-danger alert-dismissible">
+             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>{{message}} </strong>
+     
+          </div>
+    
         {{/if}}
 
         {{#if successMessage}}
 
-          <p style="color: rgb(82, 207, 14);"> {{successMessage}} </p>
+          <div class="alert alert-success alert-dismissible">
+             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <strong>{{successMessage}} </strong>
+     
+          </div>
+    
         {{/if}}
 
         <button type="submit"> Login </button>

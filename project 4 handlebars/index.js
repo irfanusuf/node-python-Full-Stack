@@ -10,7 +10,10 @@ const {
 } = require("./controllers/userController");
 const bodyParser = require("body-parser");
 const isAuthenticated = require("./authorization/auth");
-const createBook = require("./controllers/itemController");
+
+// crud operation on Book Model
+const {createBook ,getAllBooks, editBook, deleteBook} = require("./controllers/itemController");
+
 const multMid = require("./middlewares/multMid");
 
 const port = 3000;
@@ -47,8 +50,10 @@ app.use(cookie());
 app.get("/", (req, res) => { res.render("index" , {pageTitle : "BookStore"});});
 app.get("/register", (req, res) => {res.render("register" ,  {pageTitle : "BookStore | Register"});});
 app.get("/login", (req, res) => {res.render("login" , {pageTitle : "BookStore | Login"});});
-app.get("/secureindex", isAuthenticated, (req, res) => {res.render("secureHome" ,{pageTitle : "BookStore | Dashboard"});});
-app.get("/add/book", isAuthenticated, (req, res) => {res.render("addBook" ,{pageTitle : "BookStore | Add book "});});
+
+
+app.get("/secureindex", isAuthenticated, getAllBooks);
+
 app.get("/user/login", (req, res) => {res.render("userLogin" ,{pageTitle : "BookStore | User  | Login "});});
 
 
@@ -61,8 +66,15 @@ app.delete("/user/del", deleteHandler);
 
 
 
+
+
+
 // item Routes
-app.post("/add/book",multMid, createBook);
+app.post("/book/add",multMid, createBook);
+
+app.post("/book/edit/:id" , multMid ,  editBook)
+
+app.get("/book/delete/:id" , deleteBook)
 
 
 app.listen(port, () => {
