@@ -8,6 +8,7 @@ const Book = mongoose.model("Book" , {
     bookDescription : String,
     bookPrice : Number,
     bookImgUrl : String
+    
 
 })
 

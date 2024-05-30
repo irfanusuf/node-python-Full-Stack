@@ -10,6 +10,7 @@
     />
 
   </head>
+
   <body>
 
     <div class="hero">
@@ -31,27 +32,33 @@
 
     <div class="cards">
 
-      <div class="card">
-        <img src="/assets/book3.jpg" alt="" />
+      {{#each data}}
 
-        <div class="details">
-          <span> Harry potter</span>
-          <span> harry bhai </span>
-          <span> Rs 350 /</span>
+        <div class="card">
+          <img src={{this.bookImgUrl}} alt="book-image" />
+
+          <div class="details">
+            <div class="line" > <b>BOOK TITLE </b>:   <span>{{this.bookTitle}}</span></div>
+            <div class="line" > <b>BOOK AUTHOR </b>: <span>{{this.bookAuthor}} </span></div>
+            <div class="line" > <b>BOOK DESCRIPTION </b>: <span>{{this.bookDescription}} </span></div>
+            <div class="line" > <b>BOOK PRICE  </b>: <span>{{this.bookPrice}} </span></div>
+         
+          </div>
+
+          <div class="btns">
+
+            <button class="btn1 btn btn-primary">
+              <i class="bi bi-send"></i>
+              Details</button>
+
+            <button class="btn2">
+              <i class="fa fa-cart-plus" style="font-size:24px"></i>
+              Buy</button>
+          </div>
+
         </div>
 
-        <div class="btns">
-
-          <button class="btn1">
-            <i class="bi bi-send"></i>
-            Details</button>
-
-          <button class="btn2">
-            <i class="fa fa-cart-plus" style="font-size:24px"></i>
-            Buy</button>
-        </div>
-
-      </div>
+      {{/each}}
 
     </div>
 

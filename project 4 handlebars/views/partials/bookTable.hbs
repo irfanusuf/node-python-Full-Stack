@@ -1,16 +1,6 @@
-
 <style>
 
-   td{
- 
-    justify-content: center;
-    align-items: center;
-
-   }
-
 </style>
-
-
 
 <div class="container mt-5">
 
@@ -98,7 +88,7 @@
               />
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary"> Add Book </button>
           </form>
 
         </div>
@@ -107,16 +97,20 @@
     </div>
   </div>
 
-  <table class="table table-striped table-hover">
+
+
+
+
+  <table class="table table-striped table-hover mt-5">
 
     <thead>
       <tr>
 
         <th> Book Title</th>
-        <th> Book Description </th>
         <th> Book Author</th>
+        <th> Book Description </th>
         <th> Book Price</th>
-        <th>Book Image</th>
+        <th> Book Image</th>
         <th> Action </th>
       </tr>
 
@@ -126,7 +120,7 @@
 
       {{#each data}}
 
-        <div class="modal" id="editModal">
+        <div class="modal" id="editModal-{{this._id}}">
           <div class="modal-dialog">
             <div class="modal-content">
 
@@ -155,7 +149,7 @@
                       class="form-control"
                       placeholder="Enter BookTitle"
                       name="bookTitle"
-                      value= {{this.bookTitle}}
+                      value="{{this.bookTitle}}"
                     />
                   </div>
 
@@ -168,7 +162,7 @@
                       class="form-control"
                       placeholder="Enter Book Author"
                       name="bookAuthor"
-                       value= {{this.bookAuthor}}
+                      value="{{this.bookAuthor}}"
                     />
                   </div>
 
@@ -181,7 +175,7 @@
                       class="form-control"
                       placeholder="Enter Description of book "
                       name="bookDescription"
-                      value={{this.bookDescription}}
+                      value="{{this.bookDescription}}"
                     />
                   </div>
 
@@ -193,13 +187,13 @@
                       class="form-control"
                       placeholder="Enter price of the book "
                       name="bookPrice"
-                      value={{this.bookPrice}}
+                      value="{{this.bookPrice}}"
                     />
                   </div>
 
                   <div class="mb-3 mt-3">
 
-                    <label for="bookTitle" class="form-label">
+                    <label for="image" class="form-label">
                       Select Image:</label>
                     <input
                       type="file"
@@ -207,7 +201,6 @@
                       placeholder="Select Image"
                       name="image"
                       accept="image/*"
-                      value="this.boo"
                     />
                   </div>
 
@@ -216,12 +209,29 @@
 
               </div>
 
+              <div class="modal-footer">
+
+                {{#if message}}
+
+                  <div class="alert alert-danger alert-dismissible">
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                    ></button>
+                    <strong>{{message}} </strong>
+
+                  </div>
+
+                {{/if}}
+              </div>
+
             </div>
           </div>
         </div>
 
         <!-- The Modal -->
-        <div class="modal" id="delModal">
+        <div class="modal" id="delModal-{{this._id}}">
           <div class="modal-dialog">
             <div class="modal-content">
 
@@ -256,21 +266,21 @@
           </div>
         </div>
 
-        <tr >
+        <tr>
 
           {{!-- <td> {{this._id}} </td> --}}
-          <td > {{this.bookTitle}} </td>
-          <td> {{this.bookDescription}} </td>
+          <td> {{this.bookTitle}} </td>
           <td> {{this.bookAuthor}} </td>
+          <td> {{this.bookDescription}} </td>
           <td> {{this.bookPrice}} </td>
-          <td> <img width="50px" src= {{this.bookImgUrl}} alt="no-image">  </td>
+          <td> <img width="50px" src={{this.bookImgUrl}} alt="no-image" /> </td>
           <td>
 
             <button
               type="button"
               class="btn btn-success"
               data-bs-toggle="modal"
-              data-bs-target="#EditModal"
+              data-bs-target="#editModal-{{this._id}}"
             >
               Edit
             </button>
@@ -279,7 +289,7 @@
               type="button"
               class="btn btn-danger"
               data-bs-toggle="modal"
-              data-bs-target="#delModal"
+              data-bs-target="#delModal-{{this._id}}"
             >
               Delete
             </button>

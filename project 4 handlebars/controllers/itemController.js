@@ -20,10 +20,6 @@ const createBook = async (req, res) => {
     ) {
       const image = req.file.path;
 
-      if (!image) {
-        return res.render("secureHome", { message: "No image Selected" });
-      }
-
       const fileUpload = await cloudinary.uploader.upload(image, {
         folder: "Book_Delights",
       });
@@ -40,31 +36,15 @@ const createBook = async (req, res) => {
       const save = await book.save();
 
       if (save) {
-        res.redirect("/secureIndex");
+        res.redirect("/admin/dashboard");
       } else {
-        res.render("secureHome", { message: "Some Error during saving " });
+        res.redirect("/admin/dashboard", { message: "Some Error during saving " });
       }
     } else {
-      res.render("secureHome", { message: "All Details Required" });
+      res.redirect("/admin/dashboard", { message: "All Details Required" });
     }
   } catch (err) {
     console.log(err);
-  }
-};
-
-const getAllBooks = async (req, res) => {
-  try {
-    // the books data coming from mongoose is not a staright json object .... thats why hbs was not able to acces properties
-
-    // .lean method changes this object into json object and problem is solvd
-    const data = await Book.find().lean();
-
-    res.render("secureHome", {
-      pageTitle: "BookStore | Dashboard",
-      data: data,
-    });
-  } catch (error) {
-    console.log(error);
   }
 };
 
@@ -74,19 +54,20 @@ const editBook = async (req, res) => {
 
     const { bookTitle, bookAuthor, bookDescription, bookPrice } = req.body;
 
-    const image = req.file.path;
+    // const image = req.file.path;
+  
 
-    if (!image) {
-      return res.render("secureHome", { message: "No image Selected" });
-    }
+    // if (!image) {
+    //   return res.render("secureHome", { message: "No image Selected" });
+    // }
 
-    const fileUpload = await cloudinary.uploader.upload(image, {
+    const fileUpload = await cloudinary.uploader.upload(req.file.path, {
       folder: "Book_Delights",
     });
 
     const bookImgUrl = fileUpload.secure_url;
 
-    book = await Book.findByIdAndUpdate(_id, {
+    const book = await Book.findByIdAndUpdate(_id, {
       bookTitle: bookTitle,
       bookAuthor: bookAuthor,
       bookDescription: bookDescription,
@@ -98,7 +79,8 @@ const editBook = async (req, res) => {
       return res.redirect("/secureIndex");
     }
   } catch (error) {
-    console.log(error);
+    
+    console.log("image Error");
   }
 };
 
@@ -109,7 +91,7 @@ const deleteBook = async (req, res) => {
    const delBook = await Book.findByIdAndDelete(_id) 
 
    if(delBook) {
-    return res.redirect('/secureIndex');
+    return res.redirect('/admin/dashboard');
    }
    else{
     return res.render("secureHome", { message : "Some Error"});
@@ -121,4 +103,4 @@ const deleteBook = async (req, res) => {
   }
 };
 
-module.exports = { createBook, getAllBooks, editBook , deleteBook };
+module.exports = { createBook, editBook , deleteBook };

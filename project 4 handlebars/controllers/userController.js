@@ -18,7 +18,7 @@ const registerhandler = async (req, res) => {
       await newUser.save();
 
       // res.render("register" , {successMessage : "User saved Succesfully!"});
-      res.redirect("/login");
+      res.redirect("/user/login");
     } else {
       res.render("register", { message: "User already Exists!" });
     }
@@ -51,12 +51,17 @@ const deleteHandler = async (req, res) => {
 
 const loginhandler = async (req, res) => {
   const { email, password } = req.body;
+   // example 
+      const AdminEmail = "irfanusuf33@gmail.com"
+      const AdminPassWord = "12345"
+
 
   if (email !== "" && password !== "") {
     const isExistingUser = await User.findOne({ email });
     if (isExistingUser) {
       const verifyPss = await bcrypt.compare(password, isExistingUser.password);
       if (verifyPss) {
+
         const generateToken = await jwt.sign(
           { userId: isExistingUser._id },
           "thgiismysecretkey"
@@ -67,7 +72,15 @@ const loginhandler = async (req, res) => {
           secure: true,
           httpOnly: true,
         });
-        res.redirect("/secureindex");
+
+
+        if(email === AdminEmail && password === AdminPassWord) {
+            res.redirect("/admin/dashboard");
+        }
+        else{
+          res.redirect("/user/dashboard");
+        }
+      
       } else {
         res.render("login", { message: "PassWord incorrect!" });
       }

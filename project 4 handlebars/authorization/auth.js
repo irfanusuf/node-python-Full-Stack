@@ -11,7 +11,7 @@ const isAuthenticated = async (req, res, next) => {
         .status(401)
         .render("login", { message: "UnAuthorized Plz login again" });
     } else {
-      const verifyToken = await jwt.verify(
+      await jwt.verify(
         token,
         "thgiismysecretkey",
         (reject, resolve) => {
@@ -20,18 +20,30 @@ const isAuthenticated = async (req, res, next) => {
               message: "Forbidden: Plz login again after sometime ",
             });
           } else {
-
-            // req.userId = resolve.userId;
+            req.userId = resolve.userId;
             return next();
           }
         }
       );
-
-     
     }
   } catch (err) {
     console.log(err);
   }
 };
 
-module.exports = isAuthenticated;
+const isAdmin = async (req, res, next) => {
+  try {
+    const userId = req.userId;
+
+
+    if (userId !== "66320c4ded8c79a76f41c742") {
+      res.status(401).render("login", { message: "UnAuthorized to access!" });
+    } else {
+      return next();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+module.exports = { isAuthenticated, isAdmin };

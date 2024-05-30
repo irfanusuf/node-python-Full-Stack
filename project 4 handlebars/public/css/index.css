@@ -3,9 +3,8 @@ body {
   margin: 0;
   background-color: rgb(56, 54, 54);
 
-
   background-image: linear-gradient(
-    to bottom  ,
+    to bottom,
     rgb(121, 121, 121),
     rgb(8, 8, 8),
     rgb(185, 185, 185)
@@ -23,11 +22,9 @@ body {
   background-image: url(/assets/book2.jpg);
   opacity: 0.9;
   background-size: cover;
-
 }
 
 .tag {
-
   margin-left: 100px;
   margin-top: 100px;
   color: rgba(0, 0, 0, 0.818);
@@ -60,7 +57,6 @@ body {
     border-radius: 20px;
     transition: all 0.5s ease-in;
 
-
     &:hover {
       background-color: rgba(26, 187, 26, 0.973);
       cursor: pointer;
@@ -69,21 +65,20 @@ body {
   }
 }
 
-
-.text{
-h1 {
-  padding-top: 40px;
-  text-align: center;
-  color: antiquewhite;
+.text {
+  h1 {
+    padding-top: 40px;
+    text-align: center;
+    color: antiquewhite;
+  }
 }
-}
-
 
 .cards {
   min-height: 90vh;
-  width: 80%;
+  width: 89%;
   margin: auto;
   display: flex;
+  flex-wrap: wrap;
   padding-top: 30px;
 
   > .card {
@@ -94,6 +89,7 @@ h1 {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
+    margin-bottom: 20px;
     padding: 10px;
 
     > img {
@@ -104,60 +100,46 @@ h1 {
       opacity: 0.9;
     }
 
-
-    >.details{
+    > .details {
       display: flex;
       flex-direction: column;
       padding-top: 10px;
       height: 160px;
       padding-bottom: 10px;
-      
 
-       > span {
-      font-size: smaller;
-      margin-bottom: 5px;  
-      text-align: center;
-      font-style: italic;
-      font-family: cursive;
-      color: rgb(60, 58, 58);
+      >.line {
+        >span {
+          font-size: smaller;
+          font-style: italic;
+          font-family: cursive;
+          color: rgb(60, 58, 58);
+        }
+      }
     }
-    }
-   
 
     > .btns {
       display: flex;
       justify-content: center;
-     
-     
 
-     
-
-      >.btn1 , .btn2 {
+      > .btn1,
+      .btn2 {
         width: 45%;
         padding-top: 5px;
         padding-bottom: 5px;
         border: 1px solid rgb(94, 89, 89);
-        &:hover{
-          background-color: rgb(195, 192, 192);
+        &:hover {
+          background-color: rgb(78, 153, 223);
           cursor: pointer;
         }
       }
 
-
-
-
       > .btn1 {
-       
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-       
       }
-      > .btn2{
-      
+      > .btn2 {
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-       
-
       }
     }
   }

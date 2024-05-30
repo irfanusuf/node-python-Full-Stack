@@ -9,12 +9,14 @@ const {
   deleteHandler,
 } = require("./controllers/userController");
 const bodyParser = require("body-parser");
-const isAuthenticated = require("./authorization/auth");
+const {isAuthenticated , isAdmin} = require("./authorization/auth");
 
 // crud operation on Book Model
-const {createBook ,getAllBooks, editBook, deleteBook} = require("./controllers/itemController");
+const {createBook , editBook, deleteBook} = require("./controllers/itemController");
 
 const multMid = require("./middlewares/multMid");
+const getIndexPage = require("./controllers/getIndexPage");
+const getAdminPage = require("./controllers/getAdminPage")
 
 const port = 3000;
 const app = express();
@@ -28,11 +30,10 @@ app.engine("hbs" , xhbs.engine({
   partialsDir: path.join(__dirname, "views" , "partials"),
 }))
 
-
-
-
 app.set("view engine", "hbs");
 app.set("views" , path.join(__dirname , "views" , "pages"))
+
+
 
 
 
@@ -47,34 +48,33 @@ app.use(cookie());
 
 // rendering is on server side      SSR
 
-app.get("/", (req, res) => { res.render("index" , {pageTitle : "BookStore"});});
-app.get("/register", (req, res) => {res.render("register" ,  {pageTitle : "BookStore | Register"});});
-app.get("/login", (req, res) => {res.render("login" , {pageTitle : "BookStore | Login"});});
+app.get("/", getIndexPage);
 
 
-app.get("/secureindex", isAuthenticated, getAllBooks);
-
-app.get("/user/login", (req, res) => {res.render("userLogin" ,{pageTitle : "BookStore | User  | Login "});});
+// admin Routes
 
 
+app.get("/admin/dashboard", isAuthenticated, isAdmin, getAdminPage);
 
 
 // user Routes
+
+app.get("/user/register", (req, res) => {res.render("register" ,  {pageTitle : "BookStore | User Register"});});
+app.get("/user/login", (req, res) => {res.render("login" , {pageTitle : "BookStore | Login"});});
+app.get("/user/dashboard", (req, res) => {res.render("index" ,{pageTitle : "BookStore |  User DashBoard"});});
+
+
+
+//user post and del routes
 app.post("/register", registerhandler);
 app.post("/login", loginhandler);
 app.delete("/user/del", deleteHandler);
 
 
-
-
-
-
-// item Routes
+// Book routes 
 app.post("/book/add",multMid, createBook);
-
-app.post("/book/edit/:id" , multMid ,  editBook)
-
-app.get("/book/delete/:id" , deleteBook)
+app.post("/book/edit/:id", multMid, editBook)
+app.get("/book/delete/:id", deleteBook)
 
 
 app.listen(port, () => {
