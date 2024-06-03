@@ -1,0 +1,90 @@
+<div class="modal" id="BuyModal-{{this._id}}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Add Your Address Details</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form method="post" action="/address/add/{{this._id}}">
+          <div class="mb-3 mt-3">
+
+            <label for="name" class="form-label">
+              Customer Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter Customer's name"
+              name="name"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="street" class="form-label"> Street:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter street"
+              name="street"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="city" class="form-label">
+              City:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter city here "
+              name="city"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="state" class="form-label">
+              State:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter state here"
+              name="state"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="bookTitle" class="form-label">
+              Pin code:</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Enter Pincode"
+              name="pincode"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Go for payment ..
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

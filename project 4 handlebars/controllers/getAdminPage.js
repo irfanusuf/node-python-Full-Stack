@@ -8,7 +8,7 @@ const getAdminPage = async (req, res) => {
       const data = await Book.find().lean();
   
       res.render("secureHome", {
-        pageTitle: "BookStore | Dashboard",
+        pageTitle: "BookStore | AdminDashboard",
         data: data,
       });
     } catch (error) {

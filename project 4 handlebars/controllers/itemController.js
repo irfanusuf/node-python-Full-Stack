@@ -38,7 +38,9 @@ const createBook = async (req, res) => {
       if (save) {
         res.redirect("/admin/dashboard");
       } else {
-        res.redirect("/admin/dashboard", { message: "Some Error during saving " });
+        res.redirect("/admin/dashboard", {
+          message: "Some Error during saving ",
+        });
       }
     } else {
       res.redirect("/admin/dashboard", { message: "All Details Required" });
@@ -55,7 +57,6 @@ const editBook = async (req, res) => {
     const { bookTitle, bookAuthor, bookDescription, bookPrice } = req.body;
 
     // const image = req.file.path;
-  
 
     // if (!image) {
     //   return res.render("secureHome", { message: "No image Selected" });
@@ -79,28 +80,37 @@ const editBook = async (req, res) => {
       return res.redirect("/secureIndex");
     }
   } catch (error) {
-    
     console.log("image Error");
   }
 };
 
 const deleteBook = async (req, res) => {
   try {
-   const _id = req.params.id;
+    const _id = req.params.id;
 
-   const delBook = await Book.findByIdAndDelete(_id) 
+    const delBook = await Book.findByIdAndDelete(_id);
 
-   if(delBook) {
-    return res.redirect('/admin/dashboard');
-   }
-   else{
-    return res.render("secureHome", { message : "Some Error"});
-   }
-
-
+    if (delBook) {
+      return res.redirect("/admin/dashboard");
+    } else {
+      return res.render("secureHome", { message: "Some Error" });
+    }
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { createBook, editBook , deleteBook };
+const bookPayment = async (req, res) => {
+  try {
+    const _id = req.params.id; // book id
+    const book = await Book.findById({_id});
+
+    console.log(_id);
+
+    res.render("payment", { pageTitle: "BookStore | payment", book: book });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { createBook, editBook, deleteBook, bookPayment };

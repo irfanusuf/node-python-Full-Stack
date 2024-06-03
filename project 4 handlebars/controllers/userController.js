@@ -52,6 +52,8 @@ const deleteHandler = async (req, res) => {
 const loginhandler = async (req, res) => {
   const { email, password } = req.body;
    // example 
+
+   // seeding admin
       const AdminEmail = "irfanusuf33@gmail.com"
       const AdminPassWord = "12345"
 

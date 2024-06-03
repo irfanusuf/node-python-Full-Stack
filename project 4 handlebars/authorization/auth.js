@@ -35,7 +35,7 @@ const isAdmin = async (req, res, next) => {
   try {
     const userId = req.userId;
 
-
+    // seeeding id of admin
     if (userId !== "66320c4ded8c79a76f41c742") {
       res.status(401).render("login", { message: "UnAuthorized to access!" });
     } else {

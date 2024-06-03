@@ -12,11 +12,12 @@ const bodyParser = require("body-parser");
 const {isAuthenticated , isAdmin} = require("./authorization/auth");
 
 // crud operation on Book Model
-const {createBook , editBook, deleteBook} = require("./controllers/itemController");
+const {createBook , editBook, deleteBook, bookPayment} = require("./controllers/itemController");
 
 const multMid = require("./middlewares/multMid");
 const getIndexPage = require("./controllers/getIndexPage");
-const getAdminPage = require("./controllers/getAdminPage")
+const getAdminPage = require("./controllers/getAdminPage");
+const addressHandler = require("./controllers/addressController");
 
 const port = 3000;
 const app = express();
@@ -75,6 +76,12 @@ app.delete("/user/del", deleteHandler);
 app.post("/book/add",multMid, createBook);
 app.post("/book/edit/:id", multMid, editBook)
 app.get("/book/delete/:id", deleteBook)
+app.get("/book/payment/:id", bookPayment)
+
+
+// address Routes 
+
+app.post("/address/add/:id", addressHandler);
 
 
 app.listen(port, () => {
