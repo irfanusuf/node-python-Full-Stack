@@ -1,5 +1,7 @@
 const cloudinary = require("cloudinary").v2;
+const Address = require("../models/addressModel");
 const Book = require("../models/bookModel");
+const Order = require("../models/orderModel");
 const errorHandler = require("../utils/feature");
 
 cloudinary.config({
@@ -102,15 +104,52 @@ const deleteBook = async (req, res) => {
 
 const bookPayment = async (req, res) => {
   try {
-    const _id = req.params.id; // book id
-    const book = await Book.findById({_id});
+    const { bookId } = req.params;
+    const { addressId } = req.params;
 
-    console.log(_id);
+    const book = await Book.findById({ _id: bookId }).lean();
+    const address = await Address.findById({ _id: addressId }).lean();
 
-    res.render("payment", { pageTitle: "BookStore | payment", book: book });
+    res.render("payment", {
+      pageTitle: "BookStore | payment",
+      book: book,
+      address: address,
+    });
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = { createBook, editBook, deleteBook, bookPayment };
+const confirmOrder = async (req, res) => {
+  try {
+    const { bookId, addressId } = req.params;
+
+    const { cardHolderName, cardNumber, expirationDate, cvv } = req.body;
+
+    const newOrder = await Order.create({
+      bookId,
+      addressId,
+      cardHolderName,
+      cardNumber,
+      expirationDate,
+      cvv,
+    });
+
+//   add logice for creating otp 
+
+
+    if (newOrder) {
+      res.render("otp");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  createBook,
+  editBook,
+  deleteBook,
+  bookPayment,
+  confirmOrder,
+};

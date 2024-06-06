@@ -7,12 +7,48 @@
   <body>
 
     <div class="container mt-5">
-        {{#each book}}
-        <div>
-        <img src= {{this.bookImgUrl}} alt="no-preview" width="200">
+
+      <h1 class="text-center mb-5"> Order Details</h1>
+
+      <div class="d-flex">
+
+        <div class="me-5">
+
+          <p> <b>Book title </b>: {{book.bookTitle}}</p>
+          <p> <b>Book Author </b>: {{book.bookAuthor}} </p>
+          <p> <b>Book Description : </b>{{book.bookDescription}} </p>
+          <p> <b>Book Price : </b> {{book.bookPrice}}</p>
+
+          <img src={{book.bookImgUrl}} alt="no-image" width="300" />
+
         </div>
-      {{/each}}
+
+        <div>
+          <p> <b>Customer name </b>: {{address.name}}</p>
+          <p> <b>Street </b> {{address.street}} </p>
+          <p> <b>City : </b>{{address.city}} </p>
+          <p> <b>State : </b> {{address.state}}</p>
+          <p> <b>Pincode : </b> {{address.pincode}}</p>
+      
+
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary mt-5"> Google pay </button>
+      <button
+        class="btn btn-primary mt-5"
+        data-bs-toggle="modal"
+        data-bs-target="#paymentModal"
+      > Pay with Card </button>
+
+
+      {{> paymentmodal}}
+
     </div>
+
+
+    
 
   </body>
 </html>

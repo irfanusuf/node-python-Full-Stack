@@ -8,7 +8,8 @@ const Address = mongoose.model("Address" , {
    city : String,
    state : String,
    pincode : Number,
-   bookId : String
+   bookId : {type: mongoose.Schema.Types.ObjectId,
+      ref: 'Book',}
 
 })
 

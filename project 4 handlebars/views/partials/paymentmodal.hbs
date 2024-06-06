@@ -1,0 +1,79 @@
+<div class="modal" id="paymentModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Add Your Card Details</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form method="post" action="/book/payment/confirm/{{book._id}}/{{address._id}}">
+          <div class="mb-3 mt-3">
+
+            <label for="cardNumber" class="form-label">
+            Card Number   :</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter your 16 digit card number"
+              name="cardNumber"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="cardHolderName" class="form-label">  Card holder's name :</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder=" Enter Card holder's name "
+              name="cardHolderName"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="expirationDate" class="form-label">
+              Expiration Date:</label>
+            <input
+              type="date"
+              class="form-control"
+              placeholder="Enter Expiration Date  "
+              name="expirationDate"
+              required
+            />
+          </div>
+
+          <div class="mb-3 mt-3">
+
+            <label for="cvv" class="form-label">
+              Enter Your CVV:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter cvv here "
+              name="cvv"
+              required
+            />
+          </div>
+
+       
+
+          <button type="submit" class="btn btn-primary">
+            Confirm Details
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

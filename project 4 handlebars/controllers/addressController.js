@@ -4,7 +4,8 @@ const addressHandler = async (req, res) => {
   try {
 
 
-    const bookId = req.params.id
+    const {bookId} = req.params
+
     const { name, street, city, state, pincode } = req.body;
 
     
@@ -18,7 +19,9 @@ const addressHandler = async (req, res) => {
       });
 
       if (address) {
-        res.redirect(`/book/payment/${bookId}`);
+        res.redirect(`/book/payment/${bookId}/${address._id}`);
+
+        
       } else {
         res.render("index", { message: "Some Error " });
       }
