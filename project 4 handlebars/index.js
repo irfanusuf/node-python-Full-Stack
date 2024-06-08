@@ -2,6 +2,7 @@ const express = require("express"); //import
 const path = require("path");
 const cookie = require("cookie-parser");
 const xhbs = require("express-handlebars")
+require("dotenv").config()
 const connectDB = require("./config/dbConnect");
 const {
   registerhandler,
@@ -18,6 +19,7 @@ const multMid = require("./middlewares/multMid");
 const getIndexPage = require("./controllers/getIndexPage");
 const getAdminPage = require("./controllers/getAdminPage");
 const addressHandler = require("./controllers/addressController");
+const paymentIntent = require("./controllers/stripe");
 
 const port = 4000;
 const app = express();
@@ -82,6 +84,9 @@ app.get("/book/payment/:bookId/:addressId", bookPayment)
 
 
 app.post("/book/payment/confirm/:bookId/:addressId", confirmOrder)
+app.post("/book/payment/paymentIntent", paymentIntent)
+
+app.get("/book/payment/card", (req,res)=>{res.render("paymentByCard")})
 
 
 
