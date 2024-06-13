@@ -8,10 +8,9 @@ const calculateAmount = (qty, price) => {
 };
 const paymentIntent = async (req, res) => {
   try {
-    // const { qty, price } = req.body;
+    const { qty, price } = req.body;
 
-    const qty = 1
-    const price = 20
+ 
 
     const amount = calculateAmount(qty, price);
 

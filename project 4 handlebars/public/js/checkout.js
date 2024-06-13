@@ -1,37 +1,44 @@
-// This is your test publishable API key.
-const stripe = Stripe("pk_test_51POyEoD61yegK70G1cIBWLUdiLDTocDmcj2tqGPrrDEQpgeutRc6tkV3EqvHx1zm5HSIAA2LBKhlCJwCGtKrV2rI006Z5gyM0j");
+const stripe = Stripe(
+  "pk_test_51POyEoD61yegK70G1cIBWLUdiLDTocDmcj2tqGPrrDEQpgeutRc6tkV3EqvHx1zm5HSIAA2LBKhlCJwCGtKrV2rI006Z5gyM0j"
+);
 
-// The items the customer wants to buy
-const items = [{ id: "xl-tshirt" }];
+const qty = 3
+const price = 30
 
 let elements;
-
-initialize();
-checkStatus();
+initialize(); // function call back
+checkStatus(); // function call back
 
 document
   .querySelector("#payment-form")
   .addEventListener("submit", handleSubmit);
 
-// Fetches a payment intent and captures the client secret
 async function initialize() {
   const response = await fetch("/book/payment/paymentIntent", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items }),
+    body: JSON.stringify({ qty , price }),
   });
+
   const { clientSecret } = await response.json();
 
+  // console.log(clientSecret)
+
+  // set appernance
   const appearance = {
-    theme: 'stripe',
+    theme: "stripe",
   };
+
+  // create elements
   elements = stripe.elements({ appearance, clientSecret });
 
   const paymentElementOptions = {
     layout: "tabs",
   };
 
+  // paymentelement create
   const paymentElement = elements.create("payment", paymentElementOptions);
+
   paymentElement.mount("#payment-element");
 }
 
@@ -42,7 +49,6 @@ async function handleSubmit(e) {
   const { error } = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      // Make sure to change this to your payment completion page
       return_url: "http://localhost:4000/checkout.html",
     },
   });
@@ -84,7 +90,7 @@ async function checkStatus() {
   }
 }
 
-// ------- UI helpers -------
+
 
 function showMessage(messageText) {
   const messageContainer = document.querySelector("#payment-message");

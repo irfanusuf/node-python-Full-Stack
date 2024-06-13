@@ -80,13 +80,22 @@ app.post("/book/edit/:id", multMid, editBook)
 app.get("/book/delete/:id", deleteBook)
 
 
+
+
+
+
 app.get("/book/payment/:bookId/:addressId", bookPayment)
-
-
 app.post("/book/payment/confirm/:bookId/:addressId", confirmOrder)
-app.post("/book/payment/paymentIntent", paymentIntent)
 
 app.get("/book/payment/card", (req,res)=>{res.render("paymentByCard")})
+
+
+
+
+
+
+app.post("/book/payment/paymentIntent", paymentIntent)
+
 
 
 

@@ -8,6 +8,7 @@ const getIndexPage = async (req, res) => {
     let arr = await Book.find().lean();
 
     const data = arr.slice(0, 8);
+    console.log(data)
 
     res.render("index", {
       pageTitle: "BookStore | Landing page",

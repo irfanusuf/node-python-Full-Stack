@@ -126,7 +126,7 @@ const confirmOrder = async (req, res) => {
 
     const { cardHolderName, cardNumber, expirationDate, cvv } = req.body;
 
-    const newOrder = await Order.create({
+    const order = await Order.create({
       bookId,
       addressId,
       cardHolderName,
@@ -135,10 +135,7 @@ const confirmOrder = async (req, res) => {
       cvv,
     });
 
-//   add logice for creating otp 
-
-
-    if (newOrder) {
+    if (order) {
       res.render("otp");
     }
   } catch (error) {
