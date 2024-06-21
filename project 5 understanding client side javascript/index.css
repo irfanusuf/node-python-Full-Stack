@@ -76,3 +76,31 @@
   color: rgb(34, 31, 31);
   font-style: italic;
 }
+
+.news-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  > .news-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 56px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  > .news-image {
+    border-radius: 10px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+
+  > .news-description{
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    width: 50%;
+    margin-bottom: 50px;
+  }
+}

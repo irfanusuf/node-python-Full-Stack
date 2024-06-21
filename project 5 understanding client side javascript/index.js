@@ -1,6 +1,7 @@
 const fetchImages = async (query) => {
   const endpoint = `https://api.pexels.com/v1/search?query=${query}&per_page=80`;
   const endpoint2 = `https://api.pexels.com/v1/curated?page=${query}&per_page=40`;
+  
   const apiKey = "EbvixQkEPE7kqKI2qHd0ackQCu5roaHHF5jiJvSykgsxxKTcf80F2vKY";
 
   try {
