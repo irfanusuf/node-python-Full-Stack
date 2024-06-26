@@ -1,4 +1,4 @@
-.body-light {
+body {
   background-color: #f0f0f0;
   color: #333;
   font-family: Arial, sans-serif;
@@ -54,12 +54,42 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
+  > .message {
+    color: red;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: 700;
+  }
+
+  > .display-none {
+    display: none;
+  }
+
+  > .spinner {
+    width: 50px;
+    height: 50px;
+    border-left: 5px solid black;
+    border-radius: 50%;
+    animation: rotate 4s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 .pic {
@@ -96,8 +126,7 @@
     margin-top: 50px;
   }
 
-  > .news-description{
-
+  > .news-description {
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
     width: 50%;

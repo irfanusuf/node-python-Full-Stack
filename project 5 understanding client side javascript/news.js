@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const apiKey = "d75ec0f277194bb6aa1b75d1ebeaf603";
-  const date = "2024-05-21";
+  const date = "2024-05-26";
 
   const fetchNews = async (query) => {
     try {

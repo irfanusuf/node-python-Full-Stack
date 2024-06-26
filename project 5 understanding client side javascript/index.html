@@ -17,18 +17,27 @@
 
     <div class="search-bar">
       <input
-        type="number"
+        type="text"
         id="search-input"
         placeholder="Search for images..."
+  
       />
+      <input
+      type="number"
+      id="page-number"
+      placeholder="Enter page number"
+
+    />
       <button id="search-button">Search</button>
     </div>
 
-  <h1 style="text-align: center;"> PIC Gallery</h1>
-
+    <h1 style="text-align: center">PIC Gallery</h1>
 
     <div class="cards">
-      <div id="card" class="card"></div>
+      <div id="card" class="card">
+        <div id="message" class="message"></div>
+        <div id="spinner" class="spinner display-none"></div>
+      </div>
     </div>
   </body>
 </html>
