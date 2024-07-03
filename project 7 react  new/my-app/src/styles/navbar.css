@@ -1,0 +1,17 @@
+.navbar {
+  background-color: black;
+  color: azure;
+  display: flex;
+
+  > ul {
+    display: flex;
+    > li {
+      list-style-type: none;
+      > a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: azure;
+      }
+    }
+  }
+}
