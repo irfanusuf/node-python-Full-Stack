@@ -1,3 +1,27 @@
 .home {
   min-height: 90vh;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+
+  > .card {
+    
+    width: 300px;
+    
+    margin: 10px;
+
+    > img {
+      width: 300px;
+    }
+
+    > .card-content {
+      padding: 10px;
+      > p {
+        font-weight: 700;
+        margin: 5px;
+        font-style: italic;
+      }
+    }
+  }
 }
