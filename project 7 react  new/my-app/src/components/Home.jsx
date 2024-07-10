@@ -31,6 +31,7 @@ const Home = () => {
   }, []);
 
   return (
+ 
     <div className="home">
       {imageArr.map((pic) => (
         <div className="card">
