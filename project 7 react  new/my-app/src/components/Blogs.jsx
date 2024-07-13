@@ -25,13 +25,13 @@ const Blogs = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="blogs">
-      {newsArr.map((element) => (
+      {newsArr.slice(10,19).map((element) => (
         <div className="blog">
           <div className="heading">
          

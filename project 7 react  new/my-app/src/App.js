@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import NoPage from "./components/NoPage";
 import Blogs from "./components/Blogs";
+import TripData from "./components/TripData";
 
 const App = () => {
   return (
@@ -20,6 +21,8 @@ const App = () => {
           <Route path="/blogs" element={<Blogs/>}  />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element= {<About/>} />
+          <Route path="/accessTripData" element= {<TripData/>} />
+
         
         </Routes>
 
