@@ -6,6 +6,7 @@ import Contact from "./Contact";
 
 const SideNavbar = () => {
   const [displaylogin, setdisplayLogin] = useState(false);
+  
   const [displayContact, setDisplayContact] = useState(false);
 
   const handleLogin = () => {

@@ -1,5 +1,6 @@
 const express = require ("express")      // importing express from node modules 
 const bodyParser = require("body-parser")
+const cors =require("cors")
 
 const {
     registerController ,
@@ -10,7 +11,12 @@ const {
 const { connectDb } = require("./config/connDB")
 const port = 4002
 const server =  express() 
+
+
+//middlewares
 server.use(bodyParser.json())
+server.use(cors())
+
 connectDb()
 
  //apis routes 

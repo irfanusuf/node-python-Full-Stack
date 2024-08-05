@@ -3,46 +3,59 @@ import "./Login.scss";
 import { IoMdClose } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = (props) => {
-
   const [showLogin, setShowLogin] = useState(true);
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      let myEmail = "irfanusuf33@gmail.com";
-      let mypassword = "12345";   // this data is usually stored in database 
+      const formdata = { email, password };
+      const url = "http://localhost:4002/user/login";
 
+      const response = await axios.post(url, formdata);
 
-
-      if (myEmail === email && mypassword === password) {
-
-        toast.success("logged in sucessfully ");
-         
-        await localStorage.setItem("myemail" , myEmail)
-        
-        navigate ('/items')
-
-        props.setdisplayLogin(false)
-
-
-
+      if (response.data.message === "logged in successfully!") {
+        toast.success("logged in successfully!");
+        localStorage.setItem("token", response.data.token);
+        setEmail("");
+        setPassword("");
+        props.setdisplayLogin(false);
       } else {
-        toast.error("Wrong Credentials");
+        toast.error(response.data.message);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleSignUp = async (e) => {
+    e.preventDefault();
 
+    try {
+      const formdata = { email, username, password };
+      const url = "http://localhost:4002/user/register";
 
+      const response = await axios.post(url, formdata);
+
+      if (response.data.message === "user Saved Succesfully") {
+        toast.success("user Saved Succesfully");
+        setUsername("");
+        setShowLogin(true);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const gotoSignUp = () => {
     setShowLogin(!showLogin);
@@ -51,6 +64,9 @@ const Login = (props) => {
   return (
     <div>
       <ToastContainer position="top-left" />
+
+      {/* {showLogin ? "yes" : "no"} */}
+      {/* {showLogin &&  "ok"} */}
 
       {showLogin ? (
         <form
@@ -82,7 +98,7 @@ const Login = (props) => {
           <label>Password</label>
           <input
             type="password"
-            placeholder="enter you password here "
+            placeholder="Enter you password here "
             value={password}
             name="password"
             onChange={(e) => {
@@ -115,17 +131,44 @@ const Login = (props) => {
 
           <h2> Signup</h2>
 
+          <label>Username</label>
+          <input
+            placeholder="Enter you username here "
+            type="text"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            required
+          />
+
           <label>Email</label>
-          <input placeholder="enter you email here " required />
+          <input
+            placeholder="Enter you email here "
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            required
+          />
 
           <label>Password</label>
-          <input placeholder="enter you password here " required />
+          <input
+            placeholder="Enter you password here "
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          />
 
           <b>
             Already account <Link onClick={gotoSignUp}> Login here</Link>{" "}
           </b>
 
-          <button className="button" onClick={handleLogin}>
+          <button className="button" onClick={handleSignUp}>
             Sign Up
           </button>
         </form>
