@@ -9,7 +9,7 @@ const {
     updatePassword} =require("./controllers/userController")
 
 const {  connDb } = require("./config/connDB")
-const { createBlogHandler } = require("./controllers/blogController")
+const { createBlogHandler, getAllBlogsHandler } = require("./controllers/blogController")
 const multMid = require("./middlewares/multer")
 const port = 4002
 const server =  express() 
@@ -32,6 +32,7 @@ server.put("/user/updatepass" , updatePassword)
 
 
 server.post("/user/create/blog" ,multMid , createBlogHandler)
+server.get("/getAllBlogs" , getAllBlogsHandler  )
 
 
 

@@ -39,4 +39,26 @@ const createBlogHandler = async (req, res) => {
   }
 };
 
-module.exports = { createBlogHandler };
+
+
+const getAllBlogsHandler = async(req,res) =>{
+
+try {
+
+  const getBlogs = await Blog.find()
+
+  if(getBlogs){
+
+    return messageHandler(res , 200 , "blogs found" , getBlogs )
+  }
+  
+  
+} catch (error) {
+  console.error(error)
+  return messageHandler(res , 500 , "server Error")
+}
+
+}
+
+
+module.exports = { createBlogHandler , getAllBlogsHandler };

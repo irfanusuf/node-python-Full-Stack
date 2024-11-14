@@ -1,0 +1,46 @@
+.blog-card {
+
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    background-color: aliceblue;
+
+    > form {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      height: 500px;
+      padding: 30px;
+      box-shadow: 2px 2px 10px 10px rgba(0, 128, 0, 0.068);
+
+      h2 {
+        text-align: center;
+      }
+
+      > input,
+      textarea {
+        margin-top: 20px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        border: 1px solid green;
+      }
+
+      > textarea {
+        min-height: 200px;
+      }
+
+      > button {
+        margin-top: 20px;
+        padding: 7px 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: green;
+        color: white;
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
