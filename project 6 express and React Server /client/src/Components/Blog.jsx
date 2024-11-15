@@ -4,73 +4,85 @@ import axios from "axios";
 import { HiDotsVertical } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 import EditBlog from "./EditBlog";
-import CreateBlog from "./CreateBlog";
 
-const Blog = () => {
+
+const Blog = (props) => {
   const [blogs, setblogs] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showEditModal , setShowEditModal] = useState(false)
-
-  
-
-
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const fetchBlogData = async () => {
-    const url = "http://localhost:4002/getAllBlogs";
-    const res = await axios.get(url);
-    console.log(res);
-    setblogs(res.data.payload);
+    try {
+      const url = "http://localhost:4002/getAllBlogs";
+      const res = await axios.get(url);
+      console.log(res);
+      setblogs(res.data.payload);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    if (!loading) {
+    if (!props.loading) {
       fetchBlogData();
     }
-  }, [loading]);
+  }, [props.loading]);
 
   return (
     <div className="blog-container">
       <div className="blogs">
-        {blogs.map((blog) => (
-          <div className="blog">
+        {blogs.length > 0  ? (
 
-            <div className="heading">
-           
-              <h2> {blog.title} </h2>
 
-              <span onClick={()=>{setShowModal(!showModal);}}>
-                {showModal ? <RxCross1 /> : <HiDotsVertical />}
-              </span>
+          blogs.map((blog) => (
+            <div className="blog">
+              
+              <div className="heading">
+                <h2> {blog.title} </h2>
 
-            </div>
-
-            {showModal && (
-              <div className="modal">
-                <ul>
-                  <li onClick={()=>{setShowEditModal(!showEditModal)}} >Edit</li>
-                  <li>Delete</li>
-                </ul>
+                <span
+                  onClick={() => {
+                    setShowModal(!showModal);
+                  }}
+                >
+                  {showModal ? <RxCross1 /> : <HiDotsVertical />}
+                </span>
               </div>
-            )}
 
-            {showEditModal && <EditBlog/> }
-      
-          
-            <img src={blog.blogImageUrl} alt="no-preview" />
+              {showModal && (
+                <div className="modal">
+                  <ul>
+                    <li
+                      onClick={() => {
+                        setShowEditModal(!showEditModal);
+                      }}
+                    >
+                      Edit
+                    </li>
+                    <li>Delete</li>
+                  </ul>
+                </div>
+              )}
 
-            <p> {blog.description}</p>
+              {showEditModal && <div className="editModal"><EditBlog /></div>}
 
-            <input placeholder="commeent"/>
+              <img src={blog.blogImageUrl} alt="no-preview" />
 
-            <button> Comment</button>
-          </div>
-        ))}
+              <p> {blog.description}</p>
+
+              <input placeholder="commeent" />
+
+              <button> Comment</button>
+            </div>
+          ))
+
+
+        ) : (
+          <div> No Blogs Found </div>
+        )}
       </div>
 
       
-      <CreateBlog/>
-     
     </div>
   );
 };

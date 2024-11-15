@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+
+  justify-content: space-between;
+  background-color: rgb(3, 27, 3);
+  align-items: center;
+
+  > ul {
+    display: flex;
+    list-style-type: none;
+
+    > li {
+      margin-right: 20px;
+
+      > a {
+        color: aliceblue;
+        text-decoration: none;
+      }
+    }
+  }
+
+  > .nav-icons {
+    padding-right: 100px;
+
+    > span {
+      color: white;
+      font-size: 32px;
+    }
+
+    >.modal{
+        position: absolute;
+        left: 0;
+        top: 50px;
+    }
+
+
+  }
+}

@@ -2,11 +2,11 @@ import axios from 'axios';
 import "./Form.css"
 import React, { useState } from 'react'
 
-const CreateBlog = () => {
+const CreateBlog = (props) => {
     const [title, setTitle] = useState("");
     const [description, setDescripton] = useState("");
     const [image, setImage] = useState(null);
-    const [loading, setLoading] = useState(false);
+  
 
 
 
@@ -19,7 +19,7 @@ const CreateBlog = () => {
 
     const handleCreateblog = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        props.setLoading(true);
     
         try {
           const url = "http://localhost:4002/user/create/blog";
@@ -28,7 +28,7 @@ const CreateBlog = () => {
         } catch (error) {
           console.error(error);
         } finally {
-          setLoading(false);
+          props.setLoading(false);
         }
       };
 
@@ -36,8 +36,6 @@ const CreateBlog = () => {
 
   return (
     
-
-
     <div className="blog-card">
     <form>
       <h2> Create Your Own blog </h2>
@@ -67,9 +65,9 @@ const CreateBlog = () => {
         }}
       />
 
-      <button disabled={loading} onClick={handleCreateblog}>
-        {" "}
-        {loading ? "Creating...." : "Create Blog"}{" "}
+      <button disabled={props.loading} onClick={handleCreateblog}>
+       
+        {props.loading ? "Creating...." : "Create Blog"}
       </button>
     </form>
   </div>

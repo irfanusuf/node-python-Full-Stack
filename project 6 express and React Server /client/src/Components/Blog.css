@@ -16,12 +16,13 @@
      
         width: 800px;
         margin-bottom: 100px;
-        position: relative;
+       
 
       >.heading{
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         >h2{
 
         }
@@ -34,8 +35,8 @@
       }
 
       >.modal{
-        position: absolute;
-        right: 0;
+        /* position: absolute; */
+        /* right: 0; */
         background-color: grey;
         color: white;
         width: 100px;
@@ -54,6 +55,13 @@
             }
           }
         }
+      }
+
+
+      >.editModal{
+
+        position: absolute;
+        left: 0;
       }
 
        
