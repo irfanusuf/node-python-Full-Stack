@@ -1,36 +1,45 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import "./Navbar.css"
-import { TiPlus } from 'react-icons/ti'
-import CreateBlog from './CreateBlog'
+import React, {  useState } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import { TiPlus } from "react-icons/ti";
+import CreateBlog from "./CreateBlog";
 
 
+const Navbar = () => {
+  const [showModal, setShowModal] = useState(false);
 
-
-const Navbar = (props) => {
-
-
-  const [showModal , setShowModal] = useState(false)
 
   return (
-    <div className='navbar'>
+    <div className="navbar">
+      <ul>
 
-    <ul>
-      <li> <Link to="/" >Home</Link> </li>
-      <li> <Link to="/blogs" >Blogs</Link> </li>
-    </ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
 
-    <div className='nav-icons'>
+        <li>
+          <Link to="/blogs">Blogs</Link>
+        </li>
+      
+      </ul>
 
-     <span onClick={()=>{setShowModal(!showModal)}}> <TiPlus /> </span>
+      <div className="nav-icons">
+        <span
+          onClick={() => {
+            setShowModal(!showModal);
+          }}
+        >
+          <TiPlus />
+        </span>
 
-     {showModal && <div className='modal'><CreateBlog loading = {props.loading} setLoading = {props.setLoading}/></div>}
-
+        {showModal && (
+          <div className="modal">
+            <CreateBlog/>
+          </div>
+        )}
+      </div>
     </div>
+  );
+};
 
-
-    </div>
-  )
-}
-
-export default Navbar
+export default Navbar;

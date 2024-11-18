@@ -3,32 +3,27 @@ import "./App.css";
 import Blog from "./Components/Blog";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer"
-import { useState } from "react";
+import Footer from "./Components/Footer";
+
 
 function App() {
  
-
-  const [loading , setLoading] = useState(false)
 
 
   return (
     <>
       <BrowserRouter>
-
-
-        <Navbar loading = {loading} setLoading = {setLoading}/>
-
+ 
+          <Navbar/>
+    
         <div className="main">
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blogs" element={<Blog loading = {loading} />} />
-        </Routes>
-
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blogs" element={<Blog/>} />
+          </Routes>
         </div>
 
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </>
   );
