@@ -1,7 +1,7 @@
 
 import "./Form.css";
 import React, { useContext, useState } from "react";
-import { Context } from "../useContext/Actions";
+import { Context } from "../useContext/Store";
 
 
 const CreateBlog = () => {

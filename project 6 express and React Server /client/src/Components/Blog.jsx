@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import "./Blog.css";
 import { HiDotsVertical } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 import EditBlog from "./EditBlog";
+import { Context } from "../useContext/Store";
+import { FaHeart } from "react-icons/fa";
 
 
-const Blog = (props) => {
-  const [blogs, setblogs] = useState([]);
+const Blog = () => {
+
+  const { loading , blogs , fetchBlogData  } =useContext(Context)
+
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showHeart , setShowHeart] = useState(false)
 
-  const fetchBlogData = async () => {
-    try {
-      const url = "http://localhost:4002/getAllBlogs";
-      const res = await axios.get(url);
-      console.log(res);
-      setblogs(res.data.payload);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
+  const handleLike = () =>{ 
+    setShowHeart(!showHeart)
+
+  }
+
 
   useEffect(() => {
-    if (!props.loading) {
+    if (!loading) {
       fetchBlogData();
     }
-  }, [props.loading]);
+  }, [loading , fetchBlogData]);
 
   return (
     <div className="blog-container">
@@ -70,9 +70,17 @@ const Blog = (props) => {
 
               <p> {blog.description}</p>
 
-              <input placeholder="commeent" />
+              <span  onClick={handleLike}>{showHeart ?<FaHeart style={{color : "red"}} />   : <FaHeart />  }     </span>
+              <span> 0 </span>
 
-              <button> Comment</button>
+
+                <form>  
+                <input placeholder="comment" />
+
+                    <button> Comment</button>
+                </form>
+
+              
             </div>
           ))
 

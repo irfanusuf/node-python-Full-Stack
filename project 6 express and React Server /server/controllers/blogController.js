@@ -61,4 +61,33 @@ try {
 }
 
 
-module.exports = { createBlogHandler , getAllBlogsHandler };
+
+
+const likeHandler = async (req,res) =>{
+
+ try {
+  
+ const {blogId , userId}  = req.params
+ 
+
+ const blog = await Blog.findById(blogId)
+
+ if(!blog){
+  return  messageHandler(res , 400 , "Blog not Found")
+ }
+
+ 
+
+
+
+
+
+ } catch (error) {
+  console.log(error)
+ }
+
+
+}
+
+
+module.exports = { createBlogHandler , getAllBlogsHandler , likeHandler };
