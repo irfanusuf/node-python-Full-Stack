@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/css/ProductPage.css">
+
+
+<div class="product-cards">
+
+  {{#each articles}}
+    <div class="product-card">
+
+      <img
+        width="200"
+        src="{{this.ArticleImgUrl}}"
+        alt="{{this.ArticleName}}"
+      />
+      <p> {{this.ArticleName}}</p>
+      <p> {{this.ArticleBrand}}</p>
+      <p> {{this.ArticlePrice}}</p>
+
+    </div>
+
+  {{/each}}
+
+</div>

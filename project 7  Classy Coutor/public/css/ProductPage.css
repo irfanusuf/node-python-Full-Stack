@@ -1,0 +1,20 @@
+.product-cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 85%;
+  margin: auto;
+  /* background-color: aqua; */
+  padding: 50px;
+
+  > .product-card {
+    width: 300px;
+
+    > img {
+      width: 200px;
+    }
+    >p{
+      width: 200px;
+    }
+  }
+}

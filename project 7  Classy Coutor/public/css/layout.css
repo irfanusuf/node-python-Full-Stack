@@ -1,0 +1,84 @@
+.navbar {
+  display: flex;
+  background-color: rgb(32, 32, 32);
+  > img {
+    width: 150px;
+    margin-left: 20px;
+  }
+
+  > ul {
+    display: flex;
+    list-style-type: none;
+    margin-top: 35px;
+
+    > li {
+
+
+      transition: all 0.3s linear;
+      &:hover {
+        transform: scaleX(1.1);
+      }
+
+
+      > a {
+        color: white;
+        text-decoration: none;
+        list-style-type: none;
+        margin-left: 20px;
+        font-size: 20px;
+        font-style: bold;
+        font-weight: 200;
+        transition: all 0.1s ease-in;
+        &:hover{
+          cursor: pointer;
+          color: rgb(223, 94, 115);
+        }
+      }
+
+   
+    }
+  }
+
+  .search {
+    > form {
+      > input {
+        margin-left: 250px;
+        padding: 6px;
+        border-radius: 5px;
+        border: 2px solid black;
+        height: 5vh;
+        margin-top: 35px;
+      }
+      > button {
+        /* margin-left: 510px ; */
+        padding: 6px;
+        border-radius: 5px;
+        border: 2px solid black;
+        height: 5vh;
+
+        &:hover {
+          background: rgb(223, 94, 115);
+          color: black;
+
+          transform: scale(1, 1);
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background-color: rgb(32, 32, 32);
+  color: white;
+  height: 80px;
+
+  margin-top: 5px;
+  font-size: large;
+
+  > .foot {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

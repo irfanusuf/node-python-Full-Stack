@@ -1,0 +1,114 @@
+.contact-page{
+
+width:600px;
+height: 80vh;
+background-color: grey;
+margin-left: 500px;
+border-radius: 2px;
+border: 2px solid rgb(119, 14, 119);
+margin-top: 50px;
+padding: 10px;
+position: relative;
+
+>.cb{
+
+
+    position: absolute;
+    right: 2.1px;
+    top: 0.5px;
+    font-size: large;
+
+
+
+
+
+}
+
+>h1{
+    
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: inherit;
+    color: black;
+    margin-left: 160px;
+    margin-top: 20px;
+
+
+
+}
+
+>.cp{
+
+display: flex;
+flex-direction: column;
+
+>label{
+
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: initial;
+
+
+
+
+
+
+
+}
+
+>input{
+
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 300px;
+
+
+
+
+
+
+}
+>textarea{
+
+height: 15vh;
+border-radius: 2px;
+border: 1.5px solid black;
+padding: 10px;
+
+
+
+}
+
+>button{
+
+    width: 80px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid black;
+    background-color: rgba(8, 105, 76, 0.973);
+    
+    margin-top: 10px;
+
+
+
+
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+}

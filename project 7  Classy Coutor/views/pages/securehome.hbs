@@ -1,0 +1,97 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div class="container mt-5">
+      <div class="h1">
+        Admin Dashboard
+      </div>
+      <a class="btn btn-success" href="/add/article"> Add a Article </a>
+  
+      <table class="table">
+        <thead>
+          <tr>
+          <th> Name </th>
+          <th> Brand </th>
+          <th> Price </th>
+          <th> Description </th>
+          <th> Quantity </th>
+          <th> Category </th>
+          <th> searchtags </th>
+          <th> Images </th>
+          <th> Action </th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          {{#each articles}}
+
+          
+          <div class="modal" id="editArticle-{{this._id}}">
+            {{> editModal}}
+          </div>
+
+
+          <div class="modal "  id="delArticle-{{this._id}}">
+          {{> delModal}}
+          </div>
+           
+          
+
+       
+            <tr>
+
+              <td> {{this.ArticleName}}</td>
+              <td> {{this.ArticleBrand}}</td>
+              <td> {{this.ArticlePrice}}</td>
+              <td> {{this.ArticleDescription}}</td>
+              <td> {{this.ArticleQty}}</td>
+              <td> {{this.ArticleCategory}}</td>
+              <td> {{this.searchtags}}</td>
+              
+                <td> <img width="50px" src={{this.ArticleImgUrl}} alt="no-image" /> </td>
+
+           
+
+                
+         
+              <td>
+
+              <button
+              type="button"
+              class="btn btn-success"
+              data-bs-toggle="modal"
+              data-bs-target="#editArticle-{{this._id}}"
+            >
+              Edit
+            </button>
+                <button 
+                type="button"
+                class="btn btn-danger"
+                data-bs-toggle="modal"
+                data-bs-target="#delArticle-{{this._id}}"
+                
+                > DELETE</button>
+
+              </td>
+            </tr>
+
+
+            
+          {{/each}}
+        </tbody>
+
+      </table>
+
+    </div>
+
+ 
+  </body>
+</html>

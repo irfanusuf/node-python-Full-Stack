@@ -1,0 +1,129 @@
+ <div class="modal-dialog">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h4 class="modal-title">Edit Book Details</h4>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+
+              <div class="modal-body">
+
+                <form
+                  method="post"
+                  action="/edit/article/{{this._id}}"
+                  {{!-- enctype="multipart/form-data" --}}
+                >
+                  <div class="mb-3 mt-3">
+
+                    <label for="ArticleName" class="form-label">
+                      Article Name:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Name Of The Article"
+                      name="ArticleName"
+                      value="{{this.ArticleName}}"
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="ArticleBrand" class="form-label">
+                      Brand:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Brand Of The Article "
+                      name="ArticleBrand"
+                      value="{{this.ArticleBrand}}"
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="ArticlePrice" class="form-label">
+                      Price:</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Enter price of Article "
+                      name="ArticlePrice"
+                      value="{{this.ArticlePrice}}"
+                    />
+                  </div>
+
+                  <div class="mb-3 mt-3">
+
+                    <label for="ArticleDescription" class="form-label"> Description:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Description "
+                      name=" ArticleDescription"
+                      value="{{this.ArticleDescription}}"
+                    />
+                  </div>
+                     <div class="mb-3 mt-3">
+
+                    <label for="ArticleQty" class="form-label"> Quantity:</label>
+                    <input
+                      type="Number"
+                      class="form-control"
+                      placeholder="Enter Quantity "
+                      name=" ArticleQty"
+                      value="{{this.ArticleQty}}"
+                    />
+                  </div>
+                    <div class="mb-3 mt-3">
+
+                    <label for=" ArticleCategory" class="form-label"> Category:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Category "
+                      name=" ArticleCategory"
+                      value="{{this.ArticleCategory}}"
+                    />
+                  </div>
+                  <div class="mb-3 mt-3">
+
+                    <label for="searchtags" class="form-label"> SearchTags:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter SearchTags "
+                      name="searchtags"
+                      value="{{this.searchtags}}"
+                    />
+                  </div>
+
+                 
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+              </div>
+
+              <div class="modal-footer">
+
+                {{#if message}}
+
+                  <div class="alert alert-danger alert-dismissible">
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                    ></button>
+                    <strong>{{message}} </strong>
+
+                  </div>
+
+                {{/if}}
+              </div>
+
+            </div>
+</div>
